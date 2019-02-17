@@ -1,5 +1,6 @@
 package com.starken.currencyexchange;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.starken.currencyexchange.services.Forex1Service;
 import com.starken.currencyexchange.services.Forex1ServiceImpl;
 import org.springframework.boot.SpringApplication;
@@ -19,5 +20,9 @@ public class CurrencyexchangeApplication {
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }
+
+    @Bean
+    public ObjectMapper objectMapper() { return new ObjectMapper();}
+
 
 }
