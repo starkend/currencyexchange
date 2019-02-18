@@ -8,6 +8,7 @@ import org.hibernate.validator.internal.util.Contracts;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
@@ -29,5 +30,11 @@ public class Forex1Tests {
 
         assertFalse(symbols.isEmpty());
 
+    }
+
+    @Test public void whenGetMarketStatus_thenReturnTrueOrFalse() {
+        boolean marketStatus = forex1Service.getMarketStatus();
+
+        assertTrue(marketStatus);
     }
 }

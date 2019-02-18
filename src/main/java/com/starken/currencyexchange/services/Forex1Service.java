@@ -6,4 +6,6 @@ import java.util.List;
 public interface Forex1Service {
 
     List<Symbol> getSymbols();
+
+    boolean getMarketStatus();
 }
