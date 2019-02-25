@@ -1,4 +1,4 @@
-package com.starken.currencyexchange.forex1.dto;
+package com.starken.currencyexchange.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MarketStatus implements Serializable {
+public class MarketStatusDto implements Serializable {
 
     @JsonProperty("market_is_open")
     private boolean marketIsOpen;

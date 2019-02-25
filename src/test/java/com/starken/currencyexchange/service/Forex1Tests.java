@@ -1,20 +1,17 @@
-package com.starken.currencyexchange.forex1;
+package com.starken.currencyexchange.service;
 
 import com.starken.currencyexchange.CurrencyexchangeApplication;
 import com.starken.currencyexchange.CurrencyexchangeConfiguration;
-import com.starken.currencyexchange.forex1.dto.Symbol;
-import com.starken.currencyexchange.services.Forex1Service;
-import org.hibernate.validator.internal.util.Contracts;
+import com.starken.currencyexchange.dto.SymbolDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+
+import static org.junit.Assert.assertFalse;
 
 
 @RunWith(SpringRunner.class)
@@ -26,15 +23,15 @@ public class Forex1Tests {
 
     @Test
     public void whenGetAllSymbols_thenReturnSymbols() {
-        List<Symbol> symbols = forex1Service.getSymbols();
+        List<SymbolDto> symbolDtos = forex1Service.getSymbols();
 
-        assertFalse(symbols.isEmpty());
+        assertFalse(symbolDtos.isEmpty());
 
     }
 
     @Test public void whenGetMarketStatus_thenReturnTrueOrFalse() {
         boolean marketStatus = forex1Service.getMarketStatus();
 
-        assertTrue(marketStatus);
+        assertFalse(marketStatus);
     }
 }

@@ -1,9 +1,9 @@
-package com.starken.currencyexchange.services;
+package com.starken.currencyexchange.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starken.currencyexchange.forex1.dto.MarketStatus;
-import com.starken.currencyexchange.forex1.dto.Symbol;
+import com.starken.currencyexchange.dto.MarketStatusDto;
+import com.starken.currencyexchange.dto.SymbolDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -36,21 +36,21 @@ public class Forex1ServiceImpl implements Forex1Service {
     private String api_key;
 
     @Override
-    public List<Symbol> getSymbols() {
+    public List<SymbolDto> getSymbols() {
         HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
 
         HttpEntity<String> response = getStringHttpEntity(getApiKeyUriComponentsBuilder(FOREX1_URL_SYMBOLS), entity);
 
         if (response != null) {
             String responseString = response.getBody();
-            List<Symbol> symbolList = null;
+            List<SymbolDto> symbolDtoList = null;
             try {
-                symbolList = objectMapper.readValue(response.getBody(), new TypeReference<List<Symbol>>(){});
+                symbolDtoList = objectMapper.readValue(response.getBody(), new TypeReference<List<SymbolDto>>(){});
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            return symbolList;
+            return symbolDtoList;
         } else {
             return null;
         }
@@ -66,19 +66,20 @@ public class Forex1ServiceImpl implements Forex1Service {
 
         if (response != null) {
             String responseString = response.getBody();
-            MarketStatus marketStatus = null;
+            MarketStatusDto marketStatusDto = null;
 
             try {
-                marketStatus = objectMapper.readValue(response.getBody(), MarketStatus.class);
+                marketStatusDto = objectMapper.readValue(response.getBody(), MarketStatusDto.class);
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            return marketStatus.isMarketIsOpen();
+            return marketStatusDto.isMarketIsOpen();
         } else {
             return false;
         }
     }
+
 
     private UriComponentsBuilder getApiKeyUriComponentsBuilder(String url) {
         return UriComponentsBuilder.fromUriString(url)
