@@ -10,13 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class SymbolController {
 
     private final static Logger log = LogManager.getLogger(SymbolController.class);
@@ -56,9 +54,18 @@ public class SymbolController {
 
     @GetMapping("/symbolList")
     public String getSymbolList(Model model) {
+        log.info("********************************************************** Call from UI to getSymbolsList method ***********************");
         model.addAttribute("symbolListTitle", "Saved Symbols");
         model.addAttribute("symbols", symbolRepository.findAll());
 
         return "symbolList";
+    }
+
+    @GetMapping("/symbolsAngularList")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public List<SymbolDto> getSymbolAngularList() {
+        List<SymbolDto> symbolDtos = forex1Service.getSymbols();
+
+        return symbolDtos;
     }
 }

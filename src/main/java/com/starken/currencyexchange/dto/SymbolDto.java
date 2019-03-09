@@ -3,7 +3,8 @@ package com.starken.currencyexchange.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SymbolDto {
+public class
+SymbolDto {
 
     public SymbolDto(String symbolDto) {
         this.symbolDto = symbolDto;
