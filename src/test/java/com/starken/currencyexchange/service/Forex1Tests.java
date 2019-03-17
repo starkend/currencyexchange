@@ -2,6 +2,8 @@ package com.starken.currencyexchange.service;
 
 import com.starken.currencyexchange.CurrencyexchangeApplication;
 import com.starken.currencyexchange.CurrencyexchangeConfiguration;
+import com.starken.currencyexchange.dto.ConvertCurrencyDto;
+import com.starken.currencyexchange.dto.CurrencyDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 
 @RunWith(SpringRunner.class)
@@ -32,6 +36,19 @@ public class Forex1Tests {
     @Test public void whenGetMarketStatus_thenReturnTrueOrFalse() {
         boolean marketStatus = forex1Service.getMarketStatus();
 
-        assertFalse(marketStatus);
+        assertTrue(marketStatus);
+    }
+
+    @Test
+    public void whenConvertCurrency_thenReturnsCorrectValue() {
+        ConvertCurrencyDto inboundCurrencyDto = new ConvertCurrencyDto();
+        inboundCurrencyDto.setFrom("USD");
+        inboundCurrencyDto.setTo("NZD");
+        inboundCurrencyDto.setQuantity("100");
+
+        CurrencyDto outputCurrencyDto = forex1Service.convertCurrency(inboundCurrencyDto);
+
+        assertNotNull(outputCurrencyDto);
+
     }
 }
