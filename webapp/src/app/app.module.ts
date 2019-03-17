@@ -4,6 +4,9 @@ import { HttpClientModule} from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { SymbolsListComponent } from './symbols-list/symbols-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatTableModule, MatGridListModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,12 @@ import { SymbolsListComponent } from './symbols-list/symbols-list.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatTableModule,
+    MatGridListModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
