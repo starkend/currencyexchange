@@ -26,21 +26,21 @@ public class Forex1Tests {
     private Forex1Service forex1Service;
 
     @Test
-    public void whenGetAllSymbols_thenReturnSymbols() {
+    public void whenGetSymbols_thenReturnSymbols() {
         List<SymbolDto> symbolDtos = forex1Service.getSymbols();
 
         assertFalse(symbolDtos.isEmpty());
 
     }
 
-    @Test public void whenGetMarketStatus_thenReturnTrueOrFalse() {
-        boolean marketStatus = forex1Service.getMarketStatus();
+    @Test public void whenGetMarketStatus_thenReturnNotNullValue() {
+        Boolean marketStatus = forex1Service.getMarketStatus();
 
-        assertTrue(marketStatus);
+        assertNotNull(marketStatus);
     }
 
     @Test
-    public void whenConvertCurrency_thenReturnsCorrectValue() {
+    public void whenConvertCurrency_thenReturnsPopulatedDtoObject() {
         ConvertCurrencyDto inboundCurrencyDto = new ConvertCurrencyDto();
         inboundCurrencyDto.setFrom("USD");
         inboundCurrencyDto.setTo("NZD");

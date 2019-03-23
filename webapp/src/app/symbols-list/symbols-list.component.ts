@@ -16,20 +16,30 @@ export class SymbolsListComponent implements OnInit {
   constructor(private symbolsService: SymbolsService) { }
 
   ngOnInit() {
-    this.symbolsService.getAll().subscribe(data => {
-      this.symbols = data;
-    })
+    this.getSavedSymbols();
+    this.getAllSymbols();
     this.displayedColumns = ['symbol1', 'symbol2', 'addButton'];
     this.savedSymbolColumns = ['savedSymbol1', 'savedSymbol2'];
-    this.symbolsService.getSavedSymbols().subscribe( data => {
+  }
+
+  getAllSymbols() {
+    this.symbolsService.getAll().subscribe( data => {
+      this.symbols = data;
+    });
+  }
+
+  getSavedSymbols() {
+    this.symbolsService.getSavedSymbols().subscribe(data => {
       this.savedSymbols = data;
-    })
+    });
   }
 
   addSymbol(symbol: Symbol) {
     console.log("In Symbols List Component for Symbol 1: " + symbol.symbol1 + ", 2: " + symbol.symbol2);
     this.symbolsService.addSymbol(symbol)
-      .subscribe(symbol => this.symbols.push(symbol));
+      .subscribe(()=> {
+        this.getSavedSymbols();
+      });
   }
 
 }

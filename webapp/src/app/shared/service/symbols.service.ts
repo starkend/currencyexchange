@@ -20,19 +20,8 @@ export class SymbolsService {
   }
 
   addSymbol(symbol: Symbol): Observable<Symbol>  {
-    console.log("In Symbols Service, Symbol 1: " + symbol.symbol1 + ", 2: " + symbol.symbol2);
-    // let result: Observable<Object>;
-    // result =
-
-      return this.http.post<Symbol>('//localhost:8080/addSymbol', symbol );
-
-    // return result;
-    /*
-      .pipe(
-        catchError(this.handleError)
-      );
-*/
-
+    // console.log("In Symbols Service, Symbol 1: " + symbol.symbol1 + ", 2: " + symbol.symbol2);
+    return this.http.post<Symbol>('//localhost:8080/addSymbol', symbol );
   }
 
   private handleError(error: HttpErrorResponse) {

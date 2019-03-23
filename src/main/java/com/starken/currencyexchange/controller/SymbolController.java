@@ -20,16 +20,21 @@ public class SymbolController {
 
     @PostMapping("/addSymbol")
     public SymbolDto addSymbol(@RequestBody SymbolDto symbolDto) {
+        log.info("Add Symbol " + symbolDto.getSymbolPair());
+
         return symbolService.addSymbol(symbolDto);
     }
 
     @GetMapping("/savedSymbols")
     public List<SymbolDto> getSavedSymbols() {
-        return symbolService.getSymbols();
+        log.info("Get Saved Symbols");
+
+        return symbolService.getSavedSymbols();
     }
 
     @GetMapping("/symbolsAngularList")
     public List<SymbolDto> getSymbolAngularList() {
+        log.info("Get API Symbols List");
         return symbolService.getSymbols();
     }
 }
