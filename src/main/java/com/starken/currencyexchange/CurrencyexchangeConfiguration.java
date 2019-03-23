@@ -1,7 +1,6 @@
 package com.starken.currencyexchange;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starken.currencyexchange.repository.SymbolRepository;
 import com.starken.currencyexchange.service.Forex1Service;
 import com.starken.currencyexchange.service.Forex1ServiceImpl;
 import com.starken.currencyexchange.service.SymbolService;

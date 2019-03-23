@@ -30,7 +30,7 @@ public class SymbolServiceImpl implements SymbolService {
     @Override
     public List<SymbolDto> getSavedSymbols() {
         Iterable<Symbol> symbolIterable = symbolRepository.findAll();
-        List<SymbolDto> savedSymbolDtoList = new ArrayList<>();
+        List<SymbolDto> savedSymbolDtoList;
 
         savedSymbolDtoList = StreamSupport.stream(symbolIterable.spliterator(), false)
                 .map(s -> new SymbolDto(s.getSymbolPair()))

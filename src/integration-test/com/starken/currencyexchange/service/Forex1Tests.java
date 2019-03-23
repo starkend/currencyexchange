@@ -5,6 +5,7 @@ import com.starken.currencyexchange.CurrencyexchangeConfiguration;
 import com.starken.currencyexchange.dto.ConvertCurrencyDto;
 import com.starken.currencyexchange.dto.CurrencyDto;
 import com.starken.currencyexchange.dto.SymbolDto;
+import com.starken.currencyexchange.service.Forex1Service;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
