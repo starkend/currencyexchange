@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {CurrencyexchangeApplication.class, CurrencyexchangeConfiguration.class})
-public class Forex1Tests {
+public class Forex1IntegrationTest {
 
     @Autowired
     private Forex1Service forex1Service;

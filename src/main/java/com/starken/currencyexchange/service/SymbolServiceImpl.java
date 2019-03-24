@@ -6,7 +6,6 @@ import com.starken.currencyexchange.repository.SymbolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -53,5 +52,10 @@ public class SymbolServiceImpl implements SymbolService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public Symbol findBySymbolPair(String symbolPair) {
+        return symbolRepository.findBySymbolPair(symbolPair);
     }
 }

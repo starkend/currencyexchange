@@ -10,4 +10,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface SymbolRepository
         extends CrudRepository<Symbol, Long> {
 
+    public Symbol findBySymbolPair(String symbolPair);
+
 }

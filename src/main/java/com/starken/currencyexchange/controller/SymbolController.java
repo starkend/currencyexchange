@@ -32,7 +32,7 @@ public class SymbolController {
         return symbolService.getSavedSymbols();
     }
 
-    @GetMapping("/symbolsAngularList")
+    @GetMapping("/symbols")
     public List<SymbolDto> getSymbolAngularList() {
         log.info("Get API Symbols List");
         return symbolService.getSymbols();
