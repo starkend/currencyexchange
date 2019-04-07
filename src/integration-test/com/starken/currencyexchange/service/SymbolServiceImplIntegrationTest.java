@@ -1,5 +1,6 @@
 package com.starken.currencyexchange.service;
 
+import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.model.Symbol;
 import com.starken.currencyexchange.repository.SymbolRepository;
 import org.junit.Before;
@@ -12,7 +13,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 public class SymbolServiceImplIntegrationTest {
@@ -51,6 +57,23 @@ public class SymbolServiceImplIntegrationTest {
 
         assertThat(found.getSymbolPair())
                 .isEqualTo(symbolPair);
+    }
+
+    @Test
+    public void whenGetSymbolTradingPairMap_thenMapShouldBeFound() {
+        Map<String, List<String>> symbolMap = null;
+        List<SymbolDto> symbolDtoList = new ArrayList<>();
+        symbolDtoList.add(new SymbolDto("AUDUSD"));
+        symbolDtoList.add(new SymbolDto("USDAUD"));
+        symbolDtoList.add(new SymbolDto("AUDJPY"));
+        symbolDtoList.add(new SymbolDto("USDBTC"));
+        symbolDtoList.add(new SymbolDto("BTCAUD"));
+
+        Mockito.when(forex1Service.getSymbols()).thenReturn(symbolDtoList);
+
+        symbolMap = symbolService.getSymbolTradingPairMap();
+
+        assert symbolMap.size() != 0;
     }
 
 }

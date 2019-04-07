@@ -1,12 +1,14 @@
 package com.starken.currencyexchange.service;
 
+import com.starken.currencyexchange.dto.QuoteDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.model.Symbol;
 import com.starken.currencyexchange.repository.SymbolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -24,6 +26,23 @@ public class SymbolServiceImpl implements SymbolService {
     @Override
     public List<SymbolDto> getSymbols() {
         return forex1Service.getSymbols();
+    }
+
+    @Override
+    public Map<String, List<String>> getSymbolTradingPairMap() {
+        List<SymbolDto> symbolDtos = getSymbols();
+
+        Map<String, List<String>> symbolMap = symbolDtos.stream()
+                .sorted()
+                .collect(Collectors.groupingBy(SymbolDto::getSymbol1,
+                        Collectors.mapping(SymbolDto::getSymbol2, Collectors.toList())));
+
+        return new TreeMap<>(symbolMap);
+    }
+
+    @Override
+    public QuoteDto getQuote(SymbolDto symbolDto) {
+        return forex1Service.getQuote(symbolDto);
     }
 
     @Override
@@ -58,4 +77,5 @@ public class SymbolServiceImpl implements SymbolService {
     public Symbol findBySymbolPair(String symbolPair) {
         return symbolRepository.findBySymbolPair(symbolPair);
     }
+
 }

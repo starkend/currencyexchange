@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import { catchError} from "rxjs/operators";
 import { Symbol} from "../model/symbol.model";
+import {Quote} from "../model/quote.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,12 @@ export class SymbolsService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get('//localhost:8080/symbolsAngularList');
+  getAllSymbols(): Observable<any> {
+    return this.http.get('//localhost:8080/symbols');
+  }
+
+  getSymbolsMap(): Observable<any> {
+    return this.http.get<Map<string, Array<string>>>('//localhost:8080/symbolsMap');
   }
 
   getSavedSymbols(): Observable<any> {
@@ -20,8 +25,11 @@ export class SymbolsService {
   }
 
   addSymbol(symbol: Symbol): Observable<Symbol>  {
-    // console.log("In Symbols Service, Symbol 1: " + symbol.symbol1 + ", 2: " + symbol.symbol2);
     return this.http.post<Symbol>('//localhost:8080/addSymbol', symbol );
+  }
+
+  getQuote(symbol: Symbol): Observable<Quote>  {
+    return this.http.post<Quote>('//localhost:8080/getQuote', symbol);
   }
 
   private handleError(error: HttpErrorResponse) {

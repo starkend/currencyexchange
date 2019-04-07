@@ -1,9 +1,11 @@
 package com.starken.currencyexchange.service;
 
+import com.starken.currencyexchange.dto.QuoteDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.model.Symbol;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SymbolService {
 
@@ -16,4 +18,8 @@ public interface SymbolService {
     SymbolDto addSymbol(SymbolDto symbol);
 
     Symbol findBySymbolPair(String symbolPair);
+
+    Map<String, List<String>> getSymbolTradingPairMap();
+
+    QuoteDto getQuote(SymbolDto symbolDto);
 }

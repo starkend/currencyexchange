@@ -4,6 +4,7 @@ import com.starken.currencyexchange.CurrencyexchangeApplication;
 import com.starken.currencyexchange.CurrencyexchangeConfiguration;
 import com.starken.currencyexchange.dto.ConvertCurrencyDto;
 import com.starken.currencyexchange.dto.CurrencyDto;
+import com.starken.currencyexchange.dto.QuoteDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.service.Forex1Service;
 import org.junit.Test;
@@ -52,4 +53,14 @@ public class Forex1IntegrationTest {
         assertNotNull(outputCurrencyDto);
 
     }
+
+    @Test
+    public void whenGetQuote_thenReturnPopulatedQuoteDtoObject() {
+        SymbolDto quoteSymbol = new SymbolDto("USDAUD");
+
+        QuoteDto resultQuote = forex1Service.getQuote(quoteSymbol);
+
+        assertNotNull(resultQuote);
+    }
+
 }

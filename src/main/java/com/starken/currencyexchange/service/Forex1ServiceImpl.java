@@ -2,10 +2,7 @@ package com.starken.currencyexchange.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starken.currencyexchange.dto.ConvertCurrencyDto;
-import com.starken.currencyexchange.dto.CurrencyDto;
-import com.starken.currencyexchange.dto.MarketStatusDto;
-import com.starken.currencyexchange.dto.SymbolDto;
+import com.starken.currencyexchange.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -19,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,6 +38,9 @@ public class Forex1ServiceImpl implements Forex1Service {
     @Value("${service.forex1.url.convert}")
     private String URL_CONVERT;
 
+    @Value("${service.forex1.url.quote}")
+    private String URL_QUOTE;
+
     @Value("${service.forex1.api_key}")
     private String api_key;
 
@@ -48,21 +49,23 @@ public class Forex1ServiceImpl implements Forex1Service {
         HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
 
         HttpEntity<String> response = getStringHttpEntity(getUriComponentsBuilderWithParams(URL_SYMBOLS), entity);
+        List<SymbolDto> symbolDtoList = null;
 
         if (response != null) {
             String responseString = response.getBody();
-            List<SymbolDto> symbolDtoList = null;
+
             try {
                 symbolDtoList = objectMapper.readValue(response.getBody(), new TypeReference<List<SymbolDto>>(){});
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            return symbolDtoList;
-        } else {
-            return null;
         }
 
+        if (symbolDtoList != null) {
+            Collections.sort(symbolDtoList);
+        }
+
+        return symbolDtoList;
     }
 
 
@@ -113,12 +116,46 @@ public class Forex1ServiceImpl implements Forex1Service {
         }
     }
 
+    @Override
+    public QuoteDto getQuote(SymbolDto symbolDto) {
+        List<QuoteDto> quoteDtoList = null;
+
+        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
+
+        MultiValueMap<String, String> queryParams = getQuoteQueryParams(symbolDto);
+
+        HttpEntity<String> response = getStringHttpEntity(getUriComponentsBuilderWithParams(URL_QUOTE, queryParams), entity);
+
+        if (response != null) {
+            String responseString = response.getBody();
+
+            try {
+                quoteDtoList = Arrays.asList(objectMapper.readValue(response.getBody(), QuoteDto[].class));
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return quoteDtoList.isEmpty() ? null : quoteDtoList.get(0);
+    }
+
     private MultiValueMap<String, String> getConvertCurrencyQueryParams(ConvertCurrencyDto convertCurrencyDto) {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
 
         queryParams.put("from", Collections.singletonList(convertCurrencyDto.getFrom()));
         queryParams.put("to", Collections.singletonList(convertCurrencyDto.getTo()));
         queryParams.put("quantity", Collections.singletonList(convertCurrencyDto.getQuantity()));
+        queryParams.put("api_key", Collections.singletonList(api_key));
+        return queryParams;
+    }
+
+    private MultiValueMap<String, String> getQuoteQueryParams(SymbolDto symbolDto) {
+        MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
+
+        queryParams.put("pairs", Collections.singletonList(symbolDto.getSymbolPair()));
         queryParams.put("api_key", Collections.singletonList(api_key));
         return queryParams;
     }

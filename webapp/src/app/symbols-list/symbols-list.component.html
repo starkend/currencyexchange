@@ -51,4 +51,57 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
+
+  <div fxFlex="20%" fxFlexOffset="10%" >
+    <h2>Trading Pairs</h2>
+      <mat-card class="mat-elevation-z8">
+        <h3 class="mat-h3">Currency Trading Pairs</h3>
+        <mat-card>
+        <mat-form-field>
+        <mat-label>From</mat-label>
+        <mat-select [(ngModel)]="selectedSymbol" name="symbol" (selectionChange)="quotePair1Change(selectedSymbol)">
+          <mat-option *ngFor="let symbol of symbolsMap | keyvalue" [value]="symbol">
+            {{symbol.key}}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+        </mat-card>
+
+        <mat-card>
+        <mat-form-field>
+          <mat-label>To</mat-label>
+          <mat-select [(ngModel)]="symbol2" name="symbol2" (selectionChange)="quotePair2Change(symbol2)">
+            <mat-option *ngFor="let symbol2 of symbolToList" [value]="symbol2">
+              {{symbol2}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        </mat-card>
+        <mat-card-actions>
+          <button (click)="submitQuote()" mat-raised-button>Get Quote</button>
+        </mat-card-actions>
+      </mat-card>
+  </div>
+
+  <div fxFlex="20%" fxFlexOffset="5%" >
+    <h2>Quote</h2>
+      <mat-card class="mat-elevation-z8">
+        <mat-card>
+          <h3 class="mat-h3">From : {{quotePair.symbol1}}</h3>
+        </mat-card>
+        <mat-card>
+          <h3 class="mat-h3">To : {{quotePair.symbol2}}</h3>
+        </mat-card>
+        <mat-card>
+          <h3 class="mat-h3">Price : {{quote.price}}</h3>
+        </mat-card>
+        <mat-card>
+          <h3 class="mat-h3">Bid : {{quote.bid}}</h3>
+        </mat-card>
+        <mat-card>
+          <h3 class="mat-h3">Ask : {{quote.ask}}</h3>
+        </mat-card>
+      </mat-card>
+  </div>
+
 </div>
