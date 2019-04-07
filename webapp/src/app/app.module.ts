@@ -5,7 +5,7 @@ import { HttpClientModule} from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { SymbolsListComponent } from './symbols-list/symbols-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatTableModule, MatGridListModule, MatSelectModule, MatCardModule} from '@angular/material';
+import { MatButtonModule, MatTableModule, MatGridListModule, MatSelectModule, MatCardModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule} from "@angular/forms";
 

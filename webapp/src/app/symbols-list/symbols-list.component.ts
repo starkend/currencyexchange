@@ -14,7 +14,6 @@ export class SymbolsListComponent implements OnInit {
   savedSymbols: Array<any>;
   displayedColumns: Array<string>;
   savedSymbolColumns: Array<string>;
-  symbolMapColumns: Array<string>;
   selectedSymbol: Object;
   quotePair: Symbol;
   symbol2: string;
@@ -29,7 +28,6 @@ export class SymbolsListComponent implements OnInit {
     this.getSymbolsMap();
     this.displayedColumns = ['symbol1', 'symbol2', 'addButton'];
     this.savedSymbolColumns = ['savedSymbol1', 'savedSymbol2'];
-    this.symbolMapColumns = ['fromSymbol', 'toSymbol'];
     this.quotePair = new Symbol("","");
     this.quote = new Quote();
   }
