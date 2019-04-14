@@ -58,7 +58,6 @@ export class SymbolsListComponent implements OnInit {
   }
 
   submitQuote() {
-    console.log("*****************" + this.quotePair === undefined ? "__" : this.quotePair );
     this.symbolsService.getQuote(this.quotePair)
       .subscribe(data => {
         this.quote = data;
