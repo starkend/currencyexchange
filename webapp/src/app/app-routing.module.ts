@@ -1,9 +1,8 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {SymbolsListComponent} from "./symbols-list/symbols-list.component";
 import {QuotesComponent} from "./quotes/quotes.component";
 import {HomeComponent} from "./home/home.component";
-import {NavigationComponent} from "./navigation/navigation.component";
 
 const appRoutes: Routes = [
 
