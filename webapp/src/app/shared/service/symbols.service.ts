@@ -4,6 +4,8 @@ import {Observable, throwError} from 'rxjs';
 // import { catchError} from 'rxjs/operators';
 import { Symbol} from '../model/symbol.model';
 import {Quote} from '../model/quote.model';
+import {ConvertCurrency} from '../model/convert-currency.model';
+import {ConvertedRate} from '../model/converted-rate.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +31,11 @@ export class SymbolsService {
   }
 
   getQuote(symbol: Symbol): Observable<Quote>  {
-    return this.http.post<Quote>('//localhost:8080/getQuote', symbol);
+    return this.http.post<Quote>('//localhost:8080/retrieveQuote', symbol);
+  }
+
+  getCurrencyConversion(convertCurrency: ConvertCurrency): Observable<ConvertedRate>  {
+    return this.http.post<ConvertedRate>('//localhost:8080/convertCurrency', convertCurrency);
   }
 
   private handleError(error: HttpErrorResponse) {

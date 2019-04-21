@@ -15,6 +15,6 @@ public interface Forex1Service {
 
     CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto);
 
-    QuoteDto getQuote(SymbolDto symbolDto);
+    QuoteDto retrieveQuote(SymbolDto symbolDto);
 
 }

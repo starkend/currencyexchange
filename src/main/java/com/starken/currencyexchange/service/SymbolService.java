@@ -1,5 +1,7 @@
 package com.starken.currencyexchange.service;
 
+import com.starken.currencyexchange.dto.ConvertCurrencyDto;
+import com.starken.currencyexchange.dto.CurrencyDto;
 import com.starken.currencyexchange.dto.QuoteDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.model.Symbol;
@@ -21,5 +23,7 @@ public interface SymbolService {
 
     Map<String, List<String>> getSymbolTradingPairMap();
 
-    QuoteDto getQuote(SymbolDto symbolDto);
+    QuoteDto retrieveQuote(SymbolDto symbolDto);
+
+    CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto);
 }

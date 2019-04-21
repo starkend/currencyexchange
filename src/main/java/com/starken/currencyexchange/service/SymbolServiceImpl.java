@@ -1,5 +1,7 @@
 package com.starken.currencyexchange.service;
 
+import com.starken.currencyexchange.dto.ConvertCurrencyDto;
+import com.starken.currencyexchange.dto.CurrencyDto;
 import com.starken.currencyexchange.dto.QuoteDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.model.Symbol;
@@ -42,9 +44,12 @@ public class SymbolServiceImpl implements SymbolService {
     }
 
     @Override
-    public QuoteDto getQuote(SymbolDto symbolDto) {
-        return forex1Service.getQuote(symbolDto);
+    public QuoteDto retrieveQuote(SymbolDto symbolDto) {
+        return forex1Service.retrieveQuote(symbolDto);
     }
+
+    @Override
+    public CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto) { return forex1Service.convertCurrency(convertCurrencyDto); }
 
     @Override
     public List<SymbolDto> getSavedSymbols() {

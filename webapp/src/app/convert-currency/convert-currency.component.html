@@ -1,0 +1,56 @@
+<div fxLayout="row" fxLayoutAlign="start start" >
+  <div fxFlex="40%" fxFlexOffset="25%">
+    <h1>Convert Currency</h1>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="start start" >
+
+  <div fxFlex="30%" fxFlexOffset="10%" >
+    <h2>Trading Pairs</h2>
+    <mat-card class="mat-elevation-z8">
+      <h3 class="mat-h3">Currency Trading Pairs</h3>
+      <mat-card>
+        <mat-form-field>
+          <mat-label>From</mat-label>
+          <mat-select [(ngModel)]="selectedSymbol" name="symbol" (selectionChange)="currencyPair1Change(selectedSymbol)">
+            <mat-option *ngFor="let symbol of symbolsMap | keyvalue" [value]="symbol">
+              {{symbol.key}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
+
+      <mat-card>
+        <mat-form-field>
+          <mat-label>To</mat-label>
+          <mat-select [(ngModel)]="symbol2" name="symbol2" (selectionChange)="currencyPair2Change(symbol2)">
+            <mat-option *ngFor="let symbol2 of symbolToList" [value]="symbol2">
+              {{symbol2}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
+
+      <mat-card>
+        <mat-form-field>
+          <input matInput placeholder="Quantity" [(ngModel)]="convertPair.quantity">
+        </mat-form-field>
+      </mat-card>
+      <mat-card-actions>
+        <button (click)="submitCurrencyConversion()" mat-raised-button>Convert Currency</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div fxFlex="50%" fxFlexOffset="5%" >
+    <h2>Rate</h2>
+    <mat-card class="mat-elevation-z8">
+      <mat-card>
+        <h3 class="mat-h3">{{convertedRate.text}}</h3>
+      </mat-card>
+<!--      <mat-card>-->
+<!--        <h3 class="mat-h3">Value : {{convertedRate.value}}</h3>-->
+<!--      </mat-card>-->
+    </mat-card>
+  </div>
+</div>

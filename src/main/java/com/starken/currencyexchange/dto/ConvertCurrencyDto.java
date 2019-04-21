@@ -4,25 +4,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ConvertCurrencyDto {
-    private String from;
-    private String to;
-
+    private String fromCurrency;
+    private String toCurrency;
     private String quantity;
 
-    public String getFrom() {
-        return from;
+    public String getFromCurrency() {
+        return fromCurrency;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setFromCurrency(String fromCurrency) {
+        this.fromCurrency = fromCurrency;
     }
 
-    public String getTo() {
-        return to;
+    public String getToCurrency() {
+        return toCurrency;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setToCurrency(String toCurrency) {
+        this.toCurrency = toCurrency;
     }
 
     public String getQuantity() {
@@ -31,14 +30,5 @@ public class ConvertCurrencyDto {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
-    }
-
-    @Override
-    public String toString() {
-        return "ConvertCurrencyDto{" +
-                "from='" + from + '\'' +
-                ", to='" + to + '\'' +
-                ", quantity='" + quantity + '\'' +
-                '}';
     }
 }

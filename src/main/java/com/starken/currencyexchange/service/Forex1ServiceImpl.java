@@ -117,7 +117,7 @@ public class Forex1ServiceImpl implements Forex1Service {
     }
 
     @Override
-    public QuoteDto getQuote(SymbolDto symbolDto) {
+    public QuoteDto retrieveQuote(SymbolDto symbolDto) {
         List<QuoteDto> quoteDtoList = null;
 
         HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
@@ -145,8 +145,8 @@ public class Forex1ServiceImpl implements Forex1Service {
     private MultiValueMap<String, String> getConvertCurrencyQueryParams(ConvertCurrencyDto convertCurrencyDto) {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
 
-        queryParams.put("from", Collections.singletonList(convertCurrencyDto.getFrom()));
-        queryParams.put("to", Collections.singletonList(convertCurrencyDto.getTo()));
+        queryParams.put("from", Collections.singletonList(convertCurrencyDto.getFromCurrency()));
+        queryParams.put("to", Collections.singletonList(convertCurrencyDto.getToCurrency()));
         queryParams.put("quantity", Collections.singletonList(convertCurrencyDto.getQuantity()));
         queryParams.put("api_key", Collections.singletonList(api_key));
         return queryParams;

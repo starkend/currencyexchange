@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Symbol} from "../shared/model/symbol.model";
+import {Symbol} from '../shared/model/symbol.model';
 import {Quote} from '../shared/model/quote.model';
 import {SymbolsService} from '../shared/service/symbols.service';
 

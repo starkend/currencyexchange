@@ -6,7 +6,6 @@ import com.starken.currencyexchange.dto.ConvertCurrencyDto;
 import com.starken.currencyexchange.dto.CurrencyDto;
 import com.starken.currencyexchange.dto.QuoteDto;
 import com.starken.currencyexchange.dto.SymbolDto;
-import com.starken.currencyexchange.service.Forex1Service;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +43,8 @@ public class Forex1IntegrationTest {
     @Test
     public void whenConvertCurrency_thenReturnsPopulatedDtoObject() {
         ConvertCurrencyDto inboundCurrencyDto = new ConvertCurrencyDto();
-        inboundCurrencyDto.setFrom("USD");
-        inboundCurrencyDto.setTo("NZD");
+        inboundCurrencyDto.setFromCurrency("USD");
+        inboundCurrencyDto.setToCurrency("NZD");
         inboundCurrencyDto.setQuantity("100");
 
         CurrencyDto outputCurrencyDto = forex1Service.convertCurrency(inboundCurrencyDto);
@@ -58,7 +57,7 @@ public class Forex1IntegrationTest {
     public void whenGetQuote_thenReturnPopulatedQuoteDtoObject() {
         SymbolDto quoteSymbol = new SymbolDto("USDAUD");
 
-        QuoteDto resultQuote = forex1Service.getQuote(quoteSymbol);
+        QuoteDto resultQuote = forex1Service.retrieveQuote(quoteSymbol);
 
         assertNotNull(resultQuote);
     }

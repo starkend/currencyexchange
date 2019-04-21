@@ -8,7 +8,6 @@ import java.util.Date;
 public class CurrencyDto {
     private String value;
     private String text;
-    private Date timestamp;
 
     public String getValue() {
         return value;
@@ -26,20 +25,11 @@ public class CurrencyDto {
         this.text = text;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
-
     @Override
     public String toString() {
         return "CurrencyDto{" +
                 "value='" + value + '\'' +
                 ", text='" + text + '\'' +
-                ", timestamp=" + timestamp +
                 '}';
     }
 }

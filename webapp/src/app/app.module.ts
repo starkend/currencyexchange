@@ -10,7 +10,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatDialogModule,
-  MatGridListModule,
+  MatGridListModule, MatInputModule,
   MatListModule,
   MatMenuModule,
   MatSelectModule,
@@ -19,11 +19,12 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {QuotesComponent} from './quotes/quotes.component';
 import {HomeComponent} from './home/home.component';
 import {NavigationComponent} from './navigation/navigation.component';
+import { ConvertCurrencyComponent } from './convert-currency/convert-currency.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {NavigationComponent} from './navigation/navigation.component';
     SymbolsListComponent,
     QuotesComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
+    ConvertCurrencyComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,9 @@ import {NavigationComponent} from './navigation/navigation.component';
     FormsModule,
     AppRoutingModule,
     MatDialogModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

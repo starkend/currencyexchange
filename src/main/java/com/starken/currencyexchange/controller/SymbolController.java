@@ -1,5 +1,7 @@
 package com.starken.currencyexchange.controller;
 
+import com.starken.currencyexchange.dto.ConvertCurrencyDto;
+import com.starken.currencyexchange.dto.CurrencyDto;
 import com.starken.currencyexchange.dto.QuoteDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.service.SymbolService;
@@ -22,37 +24,33 @@ public class SymbolController {
 
     @PostMapping("/addSymbol")
     public SymbolDto addSymbol(@RequestBody SymbolDto symbolDto) {
-        log.info("Add Symbol " + symbolDto.getSymbolPair());
-
         return symbolService.addSymbol(symbolDto);
     }
 
-    @PostMapping("/getQuote")
+    @PostMapping("retrieveQuote")
     public QuoteDto getQuote(@RequestBody String symbolDto) {
-        log.info("Get Quote for Symbol: " + symbolDto);
+        return symbolService.retrieveQuote(new SymbolDto(symbolDto));
+    }
 
-        return symbolService.getQuote(new SymbolDto(symbolDto));
+    @PostMapping("/convertCurrency")
+    public CurrencyDto convertCurrency(@RequestBody ConvertCurrencyDto convertCurrencyDto) {
+        return symbolService.convertCurrency(convertCurrencyDto);
     }
 
     @GetMapping("/savedSymbols")
     public List<SymbolDto> getSavedSymbols() {
-        log.info("Get Saved Symbols");
-
         return symbolService.getSavedSymbols();
     }
 
     @GetMapping("/symbols")
     public List<SymbolDto> getSymbolAngularList() {
-        log.info("Get API Symbols List");
         return symbolService.getSymbols();
     }
 
     @GetMapping("/symbolsMap")
     public Map<String, List<String>> getSymbolsMap() {
-        log.info("Get API Symbols Map");
         Map<String, List<String>> symbolMap = symbolService.getSymbolTradingPairMap();
 
-        log.info(symbolMap.size());
         return symbolMap;
     }
 }
