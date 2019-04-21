@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Symbol} from "../shared/model/symbol.model";
-import {Quote} from "../shared/model/quote.model";
-import {SymbolsService} from "../shared/service/symbols.service";
+import {Quote} from '../shared/model/quote.model';
+import {SymbolsService} from '../shared/service/symbols.service';
 
 @Component({
   selector: 'app-quotes',
@@ -10,7 +10,7 @@ import {SymbolsService} from "../shared/service/symbols.service";
 })
 export class QuotesComponent implements OnInit {
 
-  selectedSymbol: Object;
+  selectedSymbol: Symbol;
   symbolsMap: Map<string, Array<string>>;
   quotePair: Symbol;
   symbol2: string;
@@ -21,7 +21,7 @@ export class QuotesComponent implements OnInit {
 
   ngOnInit() {
     this.getSymbolsMap();
-    this.quotePair = new Symbol("","");
+    this.quotePair = new Symbol('','');
     this.quote = new Quote();
 
   }
@@ -36,16 +36,16 @@ export class QuotesComponent implements OnInit {
     this.symbolsService.getQuote(this.quotePair)
       .subscribe(data => {
         this.quote = data;
-      })
+      });
   }
 
   quotePair2Change(symbol2: string) {
     this.quotePair.symbol2 = symbol2;
   }
 
-  quotePair1Change(selectedSymbol: Object) {
-    this.quotePair.symbol1 = selectedSymbol["key"];
-    this.symbolToList = selectedSymbol["value"];
+  quotePair1Change(selectedSymbol: object) {
+    this.quotePair.symbol1 = selectedSymbol['key'];
+    this.symbolToList = selectedSymbol['value'];
   }
 
 }

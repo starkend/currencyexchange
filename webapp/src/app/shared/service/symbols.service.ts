@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
-import { catchError} from "rxjs/operators";
-import { Symbol} from "../model/symbol.model";
-import {Quote} from "../model/quote.model";
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+// import { catchError} from 'rxjs/operators';
+import { Symbol} from '../model/symbol.model';
+import {Quote} from '../model/quote.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +46,5 @@ export class SymbolsService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  };
+  }
 }

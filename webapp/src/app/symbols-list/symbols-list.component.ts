@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {SymbolsService} from "../shared/service/symbols.service";
-import {Symbol} from "../shared/model/symbol.model";
+import {SymbolsService} from '../shared/service/symbols.service';
+import {Symbol} from '../shared/model/symbol.model';
 
 @Component({
   selector: 'app-symbols-list',
