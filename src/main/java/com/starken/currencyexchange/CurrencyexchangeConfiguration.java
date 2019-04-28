@@ -1,10 +1,7 @@
 package com.starken.currencyexchange;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starken.currencyexchange.service.Forex1Service;
-import com.starken.currencyexchange.service.Forex1ServiceImpl;
-import com.starken.currencyexchange.service.SymbolService;
-import com.starken.currencyexchange.service.SymbolServiceImpl;
+import com.starken.currencyexchange.service.*;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,5 +27,8 @@ public class CurrencyexchangeConfiguration {
 
     @Bean
     public SymbolService symbolService() { return new SymbolServiceImpl(); }
+
+    @Bean
+    public EcbService ecbService() { return new EcbServiceImpl(); }
 
 }
