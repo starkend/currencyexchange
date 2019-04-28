@@ -1,9 +1,6 @@
 package com.starken.currencyexchange.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starken.currencyexchange.dto.QuoteDto;
-import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,10 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.net.http.HttpResponse;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class EcbServiceImpl implements EcbService {
 
@@ -43,8 +36,6 @@ public class EcbServiceImpl implements EcbService {
         SymbolRatesDto symbolRatesDto = null;
 
         if (response != null) {
-            String responseString = response.getBody();
-
             try {
                 symbolRatesDto = objectMapper.readValue(response.getBody(), SymbolRatesDto.class);
             } catch (IOException e) {
