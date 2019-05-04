@@ -11,6 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class EcbServiceImpl implements EcbService {
 
@@ -47,6 +50,22 @@ public class EcbServiceImpl implements EcbService {
         }
 
         return symbolRatesDto;
+    }
+
+    @Override
+    public List<String> getSymbolList() {
+        List<String> symbolList = new ArrayList<>();
+
+        SymbolRatesDto symbolRatesDtos = getLatestSymbolRates();
+
+        if (symbolRatesDtos == null) {
+            return null;
+        }
+
+        symbolList.add(symbolRatesDtos.getBase());
+        symbolRatesDtos.getRates().forEach(rateDto -> symbolList.add(rateDto.getSymbol()));
+
+        return symbolList.stream().sorted().collect(Collectors.toList());
     }
 
     private HttpHeaders buildHeaders() {

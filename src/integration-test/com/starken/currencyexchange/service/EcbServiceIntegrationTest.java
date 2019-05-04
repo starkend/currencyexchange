@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
@@ -24,5 +27,15 @@ public class EcbServiceIntegrationTest {
 
         assertNotNull(symbolRatesDto);
         assertNotNull(symbolRatesDto.getRates());
+    }
+
+    @Test
+    public void whenGetLatestSymbols_theReturnSymbolStringList() {
+        List<String> symbolList = null;
+
+        symbolList = ecbService.getSymbolList();
+
+        assertNotNull(symbolList);
+        assertThat(symbolList.size() > 0);
     }
 }
