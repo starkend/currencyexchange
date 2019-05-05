@@ -19,7 +19,6 @@ import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 public class SymbolServiceImplIntegrationTest {
