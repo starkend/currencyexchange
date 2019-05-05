@@ -34,7 +34,7 @@ public class EcbServiceIntegrationTest {
     public void whenGetSymbolsList_thenReturnsPopulatedSymbolList() {
         List<String> symbolList = null;
 
-        symbolList = ecbService.getSymbolList();
+        symbolList = ecbService.getSymbolsList();
 
         assertNotNull(symbolList);
         assertFalse(symbolList.isEmpty());

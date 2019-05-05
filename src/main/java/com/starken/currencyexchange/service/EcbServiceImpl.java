@@ -55,7 +55,7 @@ public class EcbServiceImpl implements EcbService {
     }
 
     @Override
-    public List<String> getSymbolList() {
+    public List<String> getSymbolsList() {
         List<String> symbolList = new ArrayList<>();
 
         SymbolRatesDto symbolRatesDtos = getLatestSymbolRates();
@@ -74,7 +74,7 @@ public class EcbServiceImpl implements EcbService {
     public Map<String, List<String>> getSymbolsMap() {
         Map<String, List<String>> symbolsMap = new TreeMap<>();
 
-        List<String> symbolsList = getSymbolList();
+        List<String> symbolsList = getSymbolsList();
 
         if (symbolsList.isEmpty()) {
             return null;

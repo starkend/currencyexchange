@@ -22,6 +22,9 @@ public class SymbolServiceImpl implements SymbolService {
     Forex1Service forex1Service;
 
     @Autowired
+    EcbService ecbService;
+
+    @Autowired
     SymbolRepository symbolRepository;
 
     public SymbolServiceImpl() { }
@@ -84,4 +87,6 @@ public class SymbolServiceImpl implements SymbolService {
         return symbolRepository.findBySymbolPair(symbolPair);
     }
 
+    @Override
+    public List<String> getSymbolsList() { return ecbService.getSymbolsList();   }
 }

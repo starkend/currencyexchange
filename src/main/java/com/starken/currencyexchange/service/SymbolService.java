@@ -26,4 +26,6 @@ public interface SymbolService {
     QuoteDto retrieveQuote(SymbolDto symbolDto);
 
     CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto);
+
+    List<String> getSymbolsList();
 }

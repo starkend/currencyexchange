@@ -42,16 +42,16 @@ public class SymbolServiceImplIntegrationTest {
     @MockBean
     private Forex1Service forex1Service;
 
-    @Before
-    public void setUp() {
+    @MockBean
+    private EcbService ecbService;
+
+    @Test
+    public void whenValidSymbolPair_thenSymbolShouldBeFound() {
         Symbol symbol = new Symbol("USDAUD");
 
         Mockito.when(symbolRepository.findBySymbolPair(symbol.getSymbolPair()))
                 .thenReturn(symbol);
-    }
 
-    @Test
-    public void whenValidSymbolPair_thenSymbolShouldBeFound() {
         String symbolPair = "USDAUD";
         Symbol found = symbolService.findBySymbolPair(symbolPair);
 
@@ -76,5 +76,19 @@ public class SymbolServiceImplIntegrationTest {
         assertFalse(symbolMap.isEmpty());
     }
 
+    @Test
+    public void whenGetSymbolsList_thenSymbolsListShouldBeFound() {
+        List<String> symbolsList = new ArrayList<>();
+        symbolsList.add("AUD");
+        symbolsList.add("DKK");
+        symbolsList.add("GBP");
+        symbolsList.add("THB");
+
+        Mockito.when(ecbService.getSymbolsList()).thenReturn(symbolsList);
+
+        symbolsList = symbolService.getSymbolsList();
+
+        assertFalse(symbolsList.isEmpty());
+    }
 
 }

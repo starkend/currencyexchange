@@ -9,7 +9,7 @@ public interface EcbService {
 
     SymbolRatesDto getLatestSymbolRates();
 
-    List<String> getSymbolList();
+    List<String> getSymbolsList();
 
     Map<String, List<String>> getSymbolsMap();
 }
