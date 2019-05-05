@@ -3,7 +3,6 @@ package com.starken.currencyexchange.service;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.model.Symbol;
 import com.starken.currencyexchange.repository.SymbolRepository;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
