@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
@@ -73,7 +74,8 @@ public class SymbolServiceImplIntegrationTest {
 
         symbolMap = symbolService.getSymbolTradingPairMap();
 
-        assert symbolMap.size() != 0;
+        assertFalse(symbolMap.isEmpty());
     }
+
 
 }
