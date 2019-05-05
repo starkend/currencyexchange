@@ -13,6 +13,8 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class EcbServiceImpl implements EcbService {
@@ -66,6 +68,28 @@ public class EcbServiceImpl implements EcbService {
         symbolRatesDtos.getRates().forEach(rateDto -> symbolList.add(rateDto.getSymbol()));
 
         return symbolList.stream().sorted().collect(Collectors.toList());
+    }
+
+    @Override
+    public Map<String, List<String>> getSymbolsMap() {
+        Map<String, List<String>> symbolsMap = new TreeMap<>();
+
+        List<String> symbolsList = getSymbolList();
+
+        if (symbolsList.isEmpty()) {
+            return null;
+        }
+
+        for (String symbol : symbolsList) {
+            List<String> predicateList = new ArrayList<>();
+            predicateList.addAll(symbolsList);
+
+            predicateList.remove(symbol);
+
+            symbolsMap.put(symbol, predicateList);
+        }
+
+        return symbolsMap;
     }
 
     private HttpHeaders buildHeaders() {

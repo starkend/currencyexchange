@@ -10,8 +10,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
@@ -30,12 +31,22 @@ public class EcbServiceIntegrationTest {
     }
 
     @Test
-    public void whenGetLatestSymbols_theReturnSymbolStringList() {
+    public void whenGetSymbolsList_thenReturnsPopulatedSymbolList() {
         List<String> symbolList = null;
 
         symbolList = ecbService.getSymbolList();
 
         assertNotNull(symbolList);
-        assertThat(symbolList.size() > 0);
+        assertFalse(symbolList.isEmpty());
+    }
+
+    @Test
+    public void whenGetSymbolsMap_thenReturnPopulatedSymbolsMap() {
+        Map<String, List<String>> symbolsMap = null;
+
+        symbolsMap = ecbService.getSymbolsMap();
+
+        assertNotNull(symbolsMap);
+        assertFalse(symbolsMap.isEmpty());
     }
 }
