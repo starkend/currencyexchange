@@ -3,7 +3,7 @@ package com.starken.currencyexchange.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RateDto {
+public class RateDto implements Comparable<RateDto> {
 
     private String symbol;
 
@@ -23,5 +23,10 @@ public class RateDto {
 
     public void setRate(String rate) {
         this.rate = rate;
+    }
+
+    @Override
+    public int compareTo(RateDto o) {
+        return this.getSymbol().compareTo(o.getSymbol());
     }
 }

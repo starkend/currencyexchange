@@ -22,6 +22,15 @@ public class EcbServiceIntegrationTest {
     @Autowired
     EcbService ecbService;
 
+
+    @Test
+    public void whenGetLatestSymbolRatesByBase_thenReturnsPopulatedSymbolRatesDto() {
+        SymbolRatesDto symbolRatesDto = ecbService.getLatestSymbolRatesByBase("USD");
+
+        assertNotNull(symbolRatesDto);
+        assertNotNull(symbolRatesDto.getRates());
+    }
+
     @Test
     public void whenGetLatestSymbolRates_thenReturnsPopulatedSymbolRatesDto() {
         SymbolRatesDto symbolRatesDto = ecbService.getLatestSymbolRates();

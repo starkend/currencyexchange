@@ -8,16 +8,18 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class EcbServiceImpl implements EcbService {
+
+    private static final String BASE_QUERY_PARAM = "base";
 
     @Autowired
     private RestTemplate restTemplate;
@@ -28,31 +30,6 @@ public class EcbServiceImpl implements EcbService {
     @Value("${service.ecb.url.latest}")
     private String URL_LATEST;
 
-    @Override
-    public SymbolRatesDto getLatestSymbolRates() {
-        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
-
-        HttpEntity<String> response = restTemplate.exchange(
-                URL_LATEST,
-                HttpMethod.GET,
-                entity,
-                String.class);
-
-        SymbolRatesDto symbolRatesDto = null;
-
-        if (response != null) {
-            try {
-                symbolRatesDto = objectMapper.readValue(response.getBody(), SymbolRatesDto.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-        } else {
-            return null;
-        }
-
-        return symbolRatesDto;
-    }
 
     @Override
     public List<String> getSymbolsList() {
@@ -90,6 +67,74 @@ public class EcbServiceImpl implements EcbService {
         }
 
         return symbolsMap;
+    }
+
+    @Override
+    public SymbolRatesDto getLatestSymbolRates() {
+        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
+
+        HttpEntity<String> response = restTemplate.exchange(
+                URL_LATEST,
+                HttpMethod.GET,
+                entity,
+                String.class);
+
+        SymbolRatesDto symbolRatesDto = processSymbolRatesResponse(response);
+
+        return symbolRatesDto;
+    }
+
+    @Override
+    public SymbolRatesDto getLatestSymbolRatesByBase(String base) {
+        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
+
+        MultiValueMap<String, String> queryParams = getLatestSymbolRatesByBaseQueryParams(base);
+
+        HttpEntity<String> response = getStringHttpEntity(getUriComponentsBuilderWithParams(URL_LATEST, queryParams), entity);
+
+        SymbolRatesDto symbolRatesDto = processSymbolRatesResponse(response);
+
+        return symbolRatesDto;
+    }
+
+    private SymbolRatesDto processSymbolRatesResponse(HttpEntity<String> response) {
+        SymbolRatesDto symbolRatesDto = null;
+
+        if (response != null) {
+            try {
+                symbolRatesDto = objectMapper.readValue(response.getBody(), SymbolRatesDto.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        symbolRatesDto.setRates(symbolRatesDto.getRates().stream().sorted().collect(Collectors.toList()));
+
+        return symbolRatesDto;
+    }
+
+    private MultiValueMap<String, String> getLatestSymbolRatesByBaseQueryParams(String base) {
+        MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
+
+        queryParams.put(BASE_QUERY_PARAM, Collections.singletonList(base));
+
+        return queryParams;
+    }
+
+    private UriComponentsBuilder getUriComponentsBuilderWithParams(String url, MultiValueMap<String, String> params) {
+        return UriComponentsBuilder.fromUriString(url)
+                .queryParams(params);
+    }
+
+    private HttpEntity<String> getStringHttpEntity(UriComponentsBuilder builder, HttpEntity<?> entity) {
+        return restTemplate.exchange(
+                builder.toUriString(),
+                HttpMethod.GET,
+                entity,
+                String.class);
     }
 
     private HttpHeaders buildHeaders() {
