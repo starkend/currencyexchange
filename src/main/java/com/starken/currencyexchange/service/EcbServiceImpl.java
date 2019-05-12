@@ -58,8 +58,8 @@ public class EcbServiceImpl implements EcbService {
         }
 
         for (String symbol : symbolsList) {
-            List<String> predicateList = new ArrayList<>();
-            predicateList.addAll(symbolsList);
+            List<String> predicateList = new ArrayList<>(symbolsList);
+//            predicateList.addAll(symbolsList);
 
             predicateList.remove(symbol);
 
@@ -79,9 +79,7 @@ public class EcbServiceImpl implements EcbService {
                 entity,
                 String.class);
 
-        SymbolRatesDto symbolRatesDto = processSymbolRatesResponse(response);
-
-        return symbolRatesDto;
+        return processSymbolRatesResponse(response);
     }
 
     @Override
@@ -92,13 +90,11 @@ public class EcbServiceImpl implements EcbService {
 
         HttpEntity<String> response = getStringHttpEntity(getUriComponentsBuilderWithParams(URL_LATEST, queryParams), entity);
 
-        SymbolRatesDto symbolRatesDto = processSymbolRatesResponse(response);
-
-        return symbolRatesDto;
+        return processSymbolRatesResponse(response);
     }
 
     private SymbolRatesDto processSymbolRatesResponse(HttpEntity<String> response) {
-        SymbolRatesDto symbolRatesDto = null;
+        SymbolRatesDto symbolRatesDto;
 
         if (response != null) {
             try {

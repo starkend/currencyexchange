@@ -41,7 +41,7 @@ public class EcbServiceIntegrationTest {
 
     @Test
     public void whenGetSymbolsList_thenReturnsPopulatedSymbolList() {
-        List<String> symbolList = null;
+        List<String> symbolList;
 
         symbolList = ecbService.getSymbolsList();
 
@@ -51,7 +51,7 @@ public class EcbServiceIntegrationTest {
 
     @Test
     public void whenGetSymbolsMap_thenReturnPopulatedSymbolsMap() {
-        Map<String, List<String>> symbolsMap = null;
+        Map<String, List<String>> symbolsMap;
 
         symbolsMap = ecbService.getSymbolsMap();
 
