@@ -31,13 +31,13 @@
         </mat-form-field>
       </mat-card>
       <mat-card-actions>
-        <button (click)="submitQuote()" mat-raised-button>Get Quote</button>
+        <button (click)="submitQuote()" mat-raised-button>Get Rate</button>
       </mat-card-actions>
     </mat-card>
   </div>
 
   <div fxFlex="30%" fxFlexOffset="5%" >
-    <h2>Quote</h2>
+    <h2>Rate</h2>
     <mat-card class="mat-elevation-z8">
       <mat-card>
         <h3 class="mat-h3">From : {{quotePair.symbol1}}</h3>
@@ -46,14 +46,10 @@
         <h3 class="mat-h3">To : {{quotePair.symbol2}}</h3>
       </mat-card>
       <mat-card>
-        <h3 class="mat-h3">Price : {{quote.price}}</h3>
-      </mat-card>
-      <mat-card>
-        <h3 class="mat-h3">Bid : {{quote.bid}}</h3>
-      </mat-card>
-      <mat-card>
-        <h3 class="mat-h3">Ask : {{quote.ask}}</h3>
+        <h3 class="mat-h3">Rate : {{rate.rate}}</h3>
       </mat-card>
     </mat-card>
   </div>
 </div>
+
+

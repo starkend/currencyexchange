@@ -6,6 +6,7 @@ import com.starken.currencyexchange.dto.ConvertCurrencyDto;
 import com.starken.currencyexchange.dto.CurrencyDto;
 import com.starken.currencyexchange.dto.QuoteDto;
 import com.starken.currencyexchange.dto.SymbolDto;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class Forex1IntegrationTest {
     @Autowired
     private Forex1Service forex1Service;
 
+    @Ignore
     @Test
     public void whenGetSymbols_thenReturnSymbols() {
         List<SymbolDto> symbolDtos = forex1Service.getSymbols();
@@ -33,12 +35,14 @@ public class Forex1IntegrationTest {
 
     }
 
+    @Ignore
     @Test public void whenGetMarketStatus_thenReturnNotNullValue() {
         Boolean marketStatus = forex1Service.getMarketStatus();
 
         assertNotNull(marketStatus);
     }
 
+    @Ignore
     @Test
     public void whenConvertCurrency_thenReturnsPopulatedDtoObject() {
         ConvertCurrencyDto inboundCurrencyDto = new ConvertCurrencyDto();
@@ -52,6 +56,7 @@ public class Forex1IntegrationTest {
 
     }
 
+    @Ignore
     @Test
     public void whenGetQuote_thenReturnPopulatedQuoteDtoObject() {
         SymbolDto quoteSymbol = new SymbolDto("USDAUD");

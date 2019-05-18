@@ -19,5 +19,5 @@ public interface EcbService {
 
     List<SymbolDto> getSymbolDtoList();
 
-    RateDto getSingleLatestSymbolRateByBase(String base, String convertTo);
+    RateDto getSingleLatestSymbolRateByBase(SymbolDto symbolDto);
 }

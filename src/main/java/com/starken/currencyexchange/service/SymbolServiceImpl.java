@@ -1,9 +1,6 @@
 package com.starken.currencyexchange.service;
 
-import com.starken.currencyexchange.dto.ConvertCurrencyDto;
-import com.starken.currencyexchange.dto.CurrencyDto;
-import com.starken.currencyexchange.dto.QuoteDto;
-import com.starken.currencyexchange.dto.SymbolDto;
+import com.starken.currencyexchange.dto.*;
 import com.starken.currencyexchange.model.Symbol;
 import com.starken.currencyexchange.repository.SymbolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -35,11 +31,18 @@ public class SymbolServiceImpl implements SymbolService {
     }
 
     @Override
-    public Map<String, List<String>> getSymbolTradingPairMap() { return ecbService.getSymbolsMap(); }
+    public Map<String, List<String>> getSymbolTradingPairMap() {
+        return ecbService.getSymbolsMap();
+    }
 
     @Override
     public QuoteDto retrieveQuote(SymbolDto symbolDto) {
         return forex1Service.retrieveQuote(symbolDto);
+    }
+
+    @Override
+    public RateDto retrieveRate(SymbolDto symbolDto) {
+        return ecbService.getSingleLatestSymbolRateByBase(symbolDto);
     }
 
     @Override

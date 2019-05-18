@@ -94,15 +94,15 @@ public class EcbServiceImpl implements EcbService {
     }
 
     @Override
-    public RateDto getSingleLatestSymbolRateByBase(String base, String convertTo) {
-        SymbolRatesDto symbolRatesDto = getLatestSymbolRatesByBase(base);
+    public RateDto getSingleLatestSymbolRateByBase(SymbolDto symbolDto) {
+        SymbolRatesDto symbolRatesDto = getLatestSymbolRatesByBase(symbolDto.getSymbol1());
 
         if (symbolRatesDto == null) {
             return null;
         }
 
         for (RateDto rate : symbolRatesDto.getRates()) {
-            if (convertTo.equalsIgnoreCase(rate.getSymbol())) {
+            if (symbolDto.getSymbol2().equalsIgnoreCase(rate.getSymbol())) {
                 return rate;
             }
         }

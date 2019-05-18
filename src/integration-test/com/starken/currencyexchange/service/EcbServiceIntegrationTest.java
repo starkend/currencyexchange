@@ -35,7 +35,8 @@ public class EcbServiceIntegrationTest {
 
     @Test
     public void whenGetSingleLatestSymbolRateByBase_thenReturnsPopulatedRateDto() {
-        RateDto rateDto = ecbService.getSingleLatestSymbolRateByBase("USD","AUD");
+        String symbol = "USDAUD";
+        RateDto rateDto = ecbService.getSingleLatestSymbolRateByBase(new SymbolDto(symbol));
 
         assertNotNull(rateDto);
     }

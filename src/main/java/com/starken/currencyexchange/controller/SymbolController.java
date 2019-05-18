@@ -1,9 +1,6 @@
 package com.starken.currencyexchange.controller;
 
-import com.starken.currencyexchange.dto.ConvertCurrencyDto;
-import com.starken.currencyexchange.dto.CurrencyDto;
-import com.starken.currencyexchange.dto.QuoteDto;
-import com.starken.currencyexchange.dto.SymbolDto;
+import com.starken.currencyexchange.dto.*;
 import com.starken.currencyexchange.service.SymbolService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,6 +27,11 @@ public class SymbolController {
     @PostMapping("retrieveQuote")
     public QuoteDto getQuote(@RequestBody String symbolDto) {
         return symbolService.retrieveQuote(new SymbolDto(symbolDto));
+    }
+
+    @PostMapping("retrieveRate")
+    public RateDto getRate(@RequestBody SymbolDto symbolDto) {
+        return symbolService.retrieveRate(new SymbolDto(symbolDto.getSymbol1(), symbolDto.getSymbol2()));
     }
 
     @PostMapping("/convertCurrency")

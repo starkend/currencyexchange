@@ -3,6 +3,7 @@ package com.starken.currencyexchange.service;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.model.Symbol;
 import com.starken.currencyexchange.repository.SymbolRepository;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -56,23 +57,6 @@ public class SymbolServiceImplIntegrationTest {
 
         assertThat(found.getSymbolPair())
                 .isEqualTo(symbolPair);
-    }
-
-    @Test
-    public void whenGetSymbolTradingPairMap_thenMapShouldBeFound() {
-        Map<String, List<String>> symbolMap = null;
-        List<SymbolDto> symbolDtoList = new ArrayList<>();
-        symbolDtoList.add(new SymbolDto("AUDUSD"));
-        symbolDtoList.add(new SymbolDto("USDAUD"));
-        symbolDtoList.add(new SymbolDto("AUDJPY"));
-        symbolDtoList.add(new SymbolDto("USDBTC"));
-        symbolDtoList.add(new SymbolDto("BTCAUD"));
-
-        Mockito.when(forex1Service.getSymbols()).thenReturn(symbolDtoList);
-
-        symbolMap = symbolService.getSymbolTradingPairMap();
-
-        assertFalse(symbolMap.isEmpty());
     }
 
     @Test

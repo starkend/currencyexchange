@@ -1,9 +1,6 @@
 package com.starken.currencyexchange.service;
 
-import com.starken.currencyexchange.dto.ConvertCurrencyDto;
-import com.starken.currencyexchange.dto.CurrencyDto;
-import com.starken.currencyexchange.dto.QuoteDto;
-import com.starken.currencyexchange.dto.SymbolDto;
+import com.starken.currencyexchange.dto.*;
 import com.starken.currencyexchange.model.Symbol;
 
 import java.util.List;
@@ -28,4 +25,6 @@ public interface SymbolService {
     CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto);
 
     List<String> getSymbolsList();
+
+    RateDto retrieveRate(SymbolDto symbolDto);
 }
