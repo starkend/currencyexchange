@@ -1,6 +1,7 @@
 package com.starken.currencyexchange.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -67,6 +68,28 @@ public class EcbServiceImpl implements EcbService {
         }
 
         return symbolsMap;
+    }
+
+    @Override
+    public List<SymbolDto> getSymbolDtoList() {
+        List<SymbolDto> symbolDtos = new ArrayList<>();
+
+        List<String> symbolsList = getSymbolsList();
+
+        if (symbolsList.isEmpty()) {
+            return null;
+        }
+
+        for (String symbol1 : symbolsList) {
+            for (String symbol2 : symbolsList) {
+                if (!(symbol1.equalsIgnoreCase(symbol2))) {
+                    SymbolDto newSymbolDto = new SymbolDto(symbol1 + symbol2);
+                    symbolDtos.add(newSymbolDto);
+                }
+            }
+        }
+
+        return symbolDtos;
     }
 
     @Override

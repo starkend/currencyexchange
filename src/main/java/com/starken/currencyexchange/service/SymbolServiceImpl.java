@@ -31,20 +31,11 @@ public class SymbolServiceImpl implements SymbolService {
 
     @Override
     public List<SymbolDto> getSymbols() {
-        return forex1Service.getSymbols();
+        return ecbService.getSymbolDtoList();
     }
 
     @Override
-    public Map<String, List<String>> getSymbolTradingPairMap() {
-        List<SymbolDto> symbolDtos = getSymbols();
-
-        Map<String, List<String>> symbolMap = symbolDtos.stream()
-                .sorted()
-                .collect(Collectors.groupingBy(SymbolDto::getSymbol1,
-                        Collectors.mapping(SymbolDto::getSymbol2, Collectors.toList())));
-
-        return new TreeMap<>(symbolMap);
-    }
+    public Map<String, List<String>> getSymbolTradingPairMap() { return ecbService.getSymbolsMap(); }
 
     @Override
     public QuoteDto retrieveQuote(SymbolDto symbolDto) {
@@ -52,7 +43,9 @@ public class SymbolServiceImpl implements SymbolService {
     }
 
     @Override
-    public CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto) { return forex1Service.convertCurrency(convertCurrencyDto); }
+    public CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto) {
+        return forex1Service.convertCurrency(convertCurrencyDto);
+    }
 
     @Override
     public List<SymbolDto> getSavedSymbols() {

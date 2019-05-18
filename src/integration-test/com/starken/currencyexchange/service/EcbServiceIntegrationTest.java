@@ -2,6 +2,7 @@ package com.starken.currencyexchange.service;
 
 import com.starken.currencyexchange.CurrencyexchangeApplication;
 import com.starken.currencyexchange.CurrencyexchangeConfiguration;
+import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,4 +59,15 @@ public class EcbServiceIntegrationTest {
         assertNotNull(symbolsMap);
         assertFalse(symbolsMap.isEmpty());
     }
+
+    @Test
+    public void whenGetSymbolDtoList_thenReturnPopulatedSymbolDtoList() {
+        List<SymbolDto> symbolDtos;
+
+        symbolDtos = ecbService.getSymbolDtoList();
+
+        assertNotNull(symbolDtos);
+        assertFalse(symbolDtos.isEmpty());
+    }
+
 }

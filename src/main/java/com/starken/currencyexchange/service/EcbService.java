@@ -1,5 +1,6 @@
 package com.starken.currencyexchange.service;
 
+import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface EcbService {
     List<String> getSymbolsList();
 
     Map<String, List<String>> getSymbolsMap();
+
+    List<SymbolDto> getSymbolDtoList();
 }
