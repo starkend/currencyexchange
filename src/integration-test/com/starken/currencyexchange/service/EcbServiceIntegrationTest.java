@@ -2,6 +2,7 @@ package com.starken.currencyexchange.service;
 
 import com.starken.currencyexchange.CurrencyexchangeApplication;
 import com.starken.currencyexchange.CurrencyexchangeConfiguration;
+import com.starken.currencyexchange.dto.RateDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
 import org.junit.Test;
@@ -30,6 +31,13 @@ public class EcbServiceIntegrationTest {
 
         assertNotNull(symbolRatesDto);
         assertNotNull(symbolRatesDto.getRates());
+    }
+
+    @Test
+    public void whenGetSingleLatestSymbolRateByBase_thenReturnsPopulatedRateDto() {
+        RateDto rateDto = ecbService.getSingleLatestSymbolRateByBase("USD","AUD");
+
+        assertNotNull(rateDto);
     }
 
     @Test

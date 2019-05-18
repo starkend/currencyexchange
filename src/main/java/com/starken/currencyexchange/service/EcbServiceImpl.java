@@ -1,6 +1,7 @@
 package com.starken.currencyexchange.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.starken.currencyexchange.dto.RateDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,22 @@ public class EcbServiceImpl implements EcbService {
         }
 
         return symbolDtos;
+    }
+
+    @Override
+    public RateDto getSingleLatestSymbolRateByBase(String base, String convertTo) {
+        SymbolRatesDto symbolRatesDto = getLatestSymbolRatesByBase(base);
+
+        if (symbolRatesDto == null) {
+            return null;
+        }
+
+        for (RateDto rate : symbolRatesDto.getRates()) {
+            if (convertTo.equalsIgnoreCase(rate.getSymbol())) {
+                return rate;
+            }
+        }
+        return null;
     }
 
     @Override
