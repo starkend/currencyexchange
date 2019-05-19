@@ -46,6 +46,11 @@ public class SymbolServiceImpl implements SymbolService {
     }
 
     @Override
+    public SymbolRatesDto getRatesForSymbol(String baseSymbol) {
+        return ecbService.getLatestSymbolRatesByBase(baseSymbol);
+    }
+
+    @Override
     public CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto) {
         return forex1Service.convertCurrency(convertCurrencyDto);
     }

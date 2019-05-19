@@ -4,12 +4,14 @@ import {SymbolsListComponent} from './symbols-list/symbols-list.component';
 import {QuotesComponent} from './quotes/quotes.component';
 import {HomeComponent} from './home/home.component';
 import {ConvertCurrencyComponent} from './convert-currency/convert-currency.component';
+import {RatesComponent} from './rates/rates.component';
 
 const appRoutes: Routes = [
 
   { path: 'symbols-list', component: SymbolsListComponent },
   { path: 'quotes', component: QuotesComponent },
   { path: 'convert-currency', component: ConvertCurrencyComponent },
+  { path: 'rates', component: RatesComponent },
   { path: 'home', component: HomeComponent }
 ];
 

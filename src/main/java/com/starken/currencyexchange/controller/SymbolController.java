@@ -34,6 +34,11 @@ public class SymbolController {
         return symbolService.retrieveRate(new SymbolDto(symbolDto.getSymbol1(), symbolDto.getSymbol2()));
     }
 
+    @PostMapping("getRatesForSymbol")
+    public List<RateDto> getRatesForSymbol(@RequestBody String baseSymbol) {
+        return symbolService.getRatesForSymbol(baseSymbol).getRates();
+    }
+
     @PostMapping("/convertCurrency")
     public CurrencyDto convertCurrency(@RequestBody ConvertCurrencyDto convertCurrencyDto) {
         return symbolService.convertCurrency(convertCurrencyDto);
@@ -47,6 +52,11 @@ public class SymbolController {
     @GetMapping("/symbols")
     public List<SymbolDto> getSymbolAngularList() {
         return symbolService.getSymbols();
+    }
+
+    @GetMapping("/symbolsList")
+    public List<String> getSymbolsList() {
+        return symbolService.getSymbolsList();
     }
 
     @GetMapping("/symbolsMap")

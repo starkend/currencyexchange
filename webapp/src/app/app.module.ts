@@ -25,6 +25,7 @@ import {QuotesComponent} from './quotes/quotes.component';
 import {HomeComponent} from './home/home.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import { ConvertCurrencyComponent } from './convert-currency/convert-currency.component';
+import { RatesComponent } from './rates/rates.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ConvertCurrencyComponent } from './convert-currency/convert-currency.co
     QuotesComponent,
     HomeComponent,
     NavigationComponent,
-    ConvertCurrencyComponent
+    ConvertCurrencyComponent,
+    RatesComponent
   ],
   imports: [
     BrowserModule,

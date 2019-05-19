@@ -19,6 +19,10 @@ export class SymbolsService {
     return this.http.get('//localhost:8080/symbols');
   }
 
+  getSymbolsList(): Observable<any> {
+    return this.http.get('//localhost:8080/symbolsList');
+  }
+
   getSymbolsMap(): Observable<any> {
     return this.http.get<Map<string, Array<string>>>('//localhost:8080/symbolsMap');
   }
@@ -37,6 +41,10 @@ export class SymbolsService {
 
   getRate(symbol: Symbol): Observable<Rate>  {
     return this.http.post<Rate>('//localhost:8080/retrieveRate', symbol);
+  }
+
+  getRatesForSymbol(baseSymbol: String): Observable<any>  {
+    return this.http.post<any>('//localhost:8080/getRatesForSymbol', baseSymbol);
   }
 
   getCurrencyConversion(convertCurrency: ConvertCurrency): Observable<ConvertedRate>  {

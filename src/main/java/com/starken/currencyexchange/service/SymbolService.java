@@ -27,4 +27,6 @@ public interface SymbolService {
     List<String> getSymbolsList();
 
     RateDto retrieveRate(SymbolDto symbolDto);
+
+    SymbolRatesDto getRatesForSymbol(String baseSymbol);
 }
