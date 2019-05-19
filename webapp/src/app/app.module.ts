@@ -19,7 +19,7 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {QuotesComponent} from './quotes/quotes.component';
 import {HomeComponent} from './home/home.component';
@@ -54,8 +54,7 @@ import { RatesComponent } from './rates/rates.component';
     AppRoutingModule,
     MatDialogModule,
     MatToolbarModule,
-    MatInputModule,
-    ReactiveFormsModule
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

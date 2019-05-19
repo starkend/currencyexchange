@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Symbol} from '../shared/model/symbol.model';
 import {SymbolsService} from '../shared/service/symbols.service';
 import {ConvertCurrency} from '../shared/model/convert-currency.model';
-import {ConvertedRate} from '../shared/model/converted-rate.model';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-convert-currency',
@@ -19,7 +19,7 @@ export class ConvertCurrencyComponent implements OnInit {
   symbol2: string;
   symbolToList: Array<string>;
 
-  convertedRate: String;
+  convertedRate: string;
 
   constructor(private symbolsService: SymbolsService) { }
 

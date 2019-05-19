@@ -3,6 +3,7 @@
     <h1>Convert Currency</h1>
   </div>
 </div>
+
 <div fxLayout="row" fxLayoutAlign="start start" >
 
   <div fxFlex="30%" fxFlexOffset="10%" >
@@ -12,7 +13,9 @@
       <mat-card>
         <mat-form-field>
           <mat-label>From</mat-label>
-          <mat-select [(ngModel)]="selectedSymbol" name="symbol" (selectionChange)="currencyPair1Change(selectedSymbol)">
+          <mat-select [(ngModel)]="selectedSymbol"
+                      name="symbol"
+                      (selectionChange)="currencyPair1Change(selectedSymbol)">
             <mat-option *ngFor="let symbol of symbolsMap | keyvalue" [value]="symbol">
               {{symbol.key}}
             </mat-option>
@@ -33,7 +36,10 @@
 
       <mat-card>
         <mat-form-field>
-          <input matInput placeholder="Quantity" [(ngModel)]="convertPair.quantity">
+          <input matInput
+                 placeholder="Quantity"
+                 name="quantity"
+                 [(ngModel)]="convertPair.quantity">
         </mat-form-field>
       </mat-card>
       <mat-card-actions>
@@ -55,7 +61,7 @@
         <h3 class="mat-h3">Quantity : {{convertPair.quantity}}</h3>
       </mat-card>
       <mat-card>
-        <h3 class="mat-h3">Total : {{convertedRate}}</h3>
+        <h3 class="mat-h3">Total : {{convertedRate | currency}} </h3>
       </mat-card>
     </mat-card>
   </div>
