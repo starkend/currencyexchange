@@ -2,6 +2,7 @@ package com.starken.currencyexchange.service;
 
 import com.starken.currencyexchange.CurrencyexchangeApplication;
 import com.starken.currencyexchange.CurrencyexchangeConfiguration;
+import com.starken.currencyexchange.dto.ConvertCurrencyDto;
 import com.starken.currencyexchange.dto.RateDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
@@ -14,8 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {CurrencyexchangeApplication.class, CurrencyexchangeConfiguration.class})
@@ -77,6 +77,16 @@ public class EcbServiceIntegrationTest {
 
         assertNotNull(symbolDtos);
         assertFalse(symbolDtos.isEmpty());
+    }
+
+    @Test
+    public void whenGetConvertCurrencyDto_thenReturnConvertedCurrencyString() {
+        ConvertCurrencyDto convertCurrencyDto = new ConvertCurrencyDto(
+                "AUD","USD","5.50");
+
+        String convertedCurrencyString = ecbService.convertCurrency(convertCurrencyDto);
+
+        assertFalse(convertedCurrencyString.isBlank());
     }
 
 }

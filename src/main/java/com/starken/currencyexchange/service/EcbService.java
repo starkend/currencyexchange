@@ -1,5 +1,6 @@
 package com.starken.currencyexchange.service;
 
+import com.starken.currencyexchange.dto.ConvertCurrencyDto;
 import com.starken.currencyexchange.dto.RateDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
@@ -20,4 +21,6 @@ public interface EcbService {
     List<SymbolDto> getSymbolDtoList();
 
     RateDto getSingleLatestSymbolRateByBase(SymbolDto symbolDto);
+
+    String convertCurrency(ConvertCurrencyDto convertCurrencyDto);
 }

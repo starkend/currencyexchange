@@ -19,14 +19,14 @@ export class ConvertCurrencyComponent implements OnInit {
   symbol2: string;
   symbolToList: Array<string>;
 
-  convertedRate: ConvertedRate;
+  convertedRate: String;
 
   constructor(private symbolsService: SymbolsService) { }
 
   ngOnInit() {
     this.getSymbolsMap();
     this.convertPair = new ConvertCurrency('','',0);
-    this.convertedRate = new ConvertedRate('','');
+    this.convertedRate = '';
   }
 
   getSymbolsMap() {

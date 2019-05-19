@@ -47,8 +47,8 @@ export class SymbolsService {
     return this.http.post<any>('//localhost:8080/getRatesForSymbol', baseSymbol);
   }
 
-  getCurrencyConversion(convertCurrency: ConvertCurrency): Observable<ConvertedRate>  {
-    return this.http.post<ConvertedRate>('//localhost:8080/convertCurrency', convertCurrency);
+  getCurrencyConversion(convertCurrency: ConvertCurrency): Observable<String>  {
+    return this.http.post<String>('//localhost:8080/convertCurrency', convertCurrency);
   }
 
   private handleError(error: HttpErrorResponse) {

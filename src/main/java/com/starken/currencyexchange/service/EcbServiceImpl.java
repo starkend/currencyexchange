@@ -1,6 +1,7 @@
 package com.starken.currencyexchange.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.starken.currencyexchange.dto.ConvertCurrencyDto;
 import com.starken.currencyexchange.dto.RateDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
@@ -16,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -107,6 +109,20 @@ public class EcbServiceImpl implements EcbService {
             }
         }
         return null;
+    }
+
+    @Override
+    public String convertCurrency(ConvertCurrencyDto convertCurrencyDto) {
+
+        RateDto rateDto = getSingleLatestSymbolRateByBase(
+                new SymbolDto(convertCurrencyDto.getFromCurrency(), convertCurrencyDto.getToCurrency()));
+
+        BigDecimal rate = new BigDecimal(rateDto.getRate());
+        BigDecimal quantity = new BigDecimal(convertCurrencyDto.getQuantity());
+
+        BigDecimal total = rate.multiply(quantity);
+
+        return total.toString();
     }
 
     @Override

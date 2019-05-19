@@ -51,8 +51,8 @@ public class SymbolServiceImpl implements SymbolService {
     }
 
     @Override
-    public CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto) {
-        return forex1Service.convertCurrency(convertCurrencyDto);
+    public String convertCurrency(ConvertCurrencyDto convertCurrencyDto) {
+        return ecbService.convertCurrency(convertCurrencyDto);
     }
 
     @Override

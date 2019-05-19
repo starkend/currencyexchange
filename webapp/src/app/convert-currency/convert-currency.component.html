@@ -42,15 +42,22 @@
     </mat-card>
   </div>
 
-  <div fxFlex="50%" fxFlexOffset="5%" >
-    <h2>Rate</h2>
+  <div fxFlex="30%" fxFlexOffset="5%" >
+    <h2>Converted Rate</h2>
     <mat-card class="mat-elevation-z8">
       <mat-card>
-        <h3 class="mat-h3">{{convertedRate.text}}</h3>
+        <h3 class="mat-h3">From : {{convertPair.fromCurrency}}</h3>
       </mat-card>
-<!--      <mat-card>-->
-<!--        <h3 class="mat-h3">Value : {{convertedRate.value}}</h3>-->
-<!--      </mat-card>-->
+      <mat-card>
+        <h3 class="mat-h3">To : {{convertPair.toCurrency}}</h3>
+      </mat-card>
+      <mat-card>
+        <h3 class="mat-h3">Quantity : {{convertPair.quantity}}</h3>
+      </mat-card>
+      <mat-card>
+        <h3 class="mat-h3">Total : {{convertedRate}}</h3>
+      </mat-card>
     </mat-card>
   </div>
+
 </div>

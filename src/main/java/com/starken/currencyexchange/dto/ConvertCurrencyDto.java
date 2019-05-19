@@ -8,6 +8,15 @@ public class ConvertCurrencyDto {
     private String toCurrency;
     private String quantity;
 
+    public ConvertCurrencyDto(String fromCurrency, String toCurrency, String quantity) {
+        this.fromCurrency = fromCurrency;
+        this.toCurrency = toCurrency;
+        this.quantity = quantity;
+    }
+
+    public ConvertCurrencyDto() {
+    }
+
     public String getFromCurrency() {
         return fromCurrency;
     }

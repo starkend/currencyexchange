@@ -40,7 +40,7 @@ public class SymbolController {
     }
 
     @PostMapping("/convertCurrency")
-    public CurrencyDto convertCurrency(@RequestBody ConvertCurrencyDto convertCurrencyDto) {
+    public String convertCurrency(@RequestBody ConvertCurrencyDto convertCurrencyDto) {
         return symbolService.convertCurrency(convertCurrencyDto);
     }
 
