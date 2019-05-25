@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-@PropertySource("ce-dev.properties")
+@PropertySource("application.properties")
 public class CurrencyexchangeConfiguration {
 
     @Bean

@@ -7,6 +7,7 @@ import {Quote} from '../model/quote.model';
 import {ConvertCurrency} from '../model/convert-currency.model';
 import {ConvertedRate} from '../model/converted-rate.model';
 import {Rate} from "../model/rate.model";
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,39 +17,39 @@ export class SymbolsService {
   constructor(private http: HttpClient) { }
 
   getAllSymbols(): Observable<any> {
-    return this.http.get('//localhost:8080/symbols');
+    return this.http.get(environment.apiUrl + '/symbols');
   }
 
   getSymbolsList(): Observable<any> {
-    return this.http.get('//localhost:8080/symbolsList');
+    return this.http.get(environment.apiUrl + '/symbolsList');
   }
 
   getSymbolsMap(): Observable<any> {
-    return this.http.get<Map<string, Array<string>>>('//localhost:8080/symbolsMap');
+    return this.http.get<Map<string, Array<string>>>(environment.apiUrl + '/symbolsMap');
   }
 
   getSavedSymbols(): Observable<any> {
-    return this.http.get('//localhost:8080/savedSymbols');
+    return this.http.get(environment.apiUrl + '/savedSymbols');
   }
 
   addSymbol(symbol: Symbol): Observable<Symbol>  {
-    return this.http.post<Symbol>('//localhost:8080/addSymbol', symbol );
+    return this.http.post<Symbol>(environment.apiUrl + '/addSymbol', symbol );
   }
 
   getQuote(symbol: Symbol): Observable<Quote>  {
-    return this.http.post<Quote>('//localhost:8080/retrieveQuote', symbol);
+    return this.http.post<Quote>(environment.apiUrl + '/retrieveQuote', symbol);
   }
 
   getRate(symbol: Symbol): Observable<Rate>  {
-    return this.http.post<Rate>('//localhost:8080/retrieveRate', symbol);
+    return this.http.post<Rate>(environment.apiUrl + '/retrieveRate', symbol);
   }
 
   getRatesForSymbol(baseSymbol: String): Observable<any>  {
-    return this.http.post<any>('//localhost:8080/getRatesForSymbol', baseSymbol);
+    return this.http.post<any>(environment.apiUrl + '/getRatesForSymbol', baseSymbol);
   }
 
   getCurrencyConversion(convertCurrency: ConvertCurrency): Observable<string>  {
-    return this.http.post<string>('//localhost:8080/convertCurrency', convertCurrency);
+    return this.http.post<string>(environment.apiUrl + '/convertCurrency', convertCurrency);
   }
 
   private handleError(error: HttpErrorResponse) {
