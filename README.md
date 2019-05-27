@@ -5,7 +5,7 @@ The business context of this app is foreign currency exchange.  A currency tradi
 
 This app has also been successfully deployed to AWS.  It runs on an EC2 instance with the Angular content served via NGINX and the Spring Boot portion via an executable jar. PostgreSQL is deployed to an RDS instance.
 
-The Spring Boot portion has been successfully run locally in a Docker image.
+The Spring Boot and Angular portions have both been successfully run locally in Docker images.
 
 ### Functionality
 - **Spring Boot**
