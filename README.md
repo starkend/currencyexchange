@@ -3,6 +3,10 @@ Proof of Concept MVC App built with **Spring Boot 2.x, Angular 7, and Postgres 9
 
 The business context of this app is foreign currency exchange.  A currency trading pair, such as USD & AUD, are referred to as a Symbol.  The external APIs consumed in this app are provided by the European Central Bank(ECB) at https://exchangeratesapi.io/.
 
+App has also been successfully deployed to AWS.  It runs on an EC2 instance with PostgreSQL deployed on RDS.
+
+The Spring Boot portion has been successfully run locally in a Docker image.
+
 ### Functionality
 - **Spring Boot**
   - MVC Architecture
