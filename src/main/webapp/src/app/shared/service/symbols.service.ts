@@ -5,7 +5,6 @@ import {Observable, throwError} from 'rxjs';
 import { Symbol} from '../model/symbol.model';
 import {Quote} from '../model/quote.model';
 import {ConvertCurrency} from '../model/convert-currency.model';
-import {ConvertedRate} from '../model/converted-rate.model';
 import {Rate} from "../model/rate.model";
 import {environment} from '../../../environments/environment';
 
