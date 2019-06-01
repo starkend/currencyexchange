@@ -12,7 +12,7 @@ public interface SymbolService {
 
     List<SymbolDto> getSavedSymbols();
 
-    boolean getMarketStatus();
+//    boolean getMarketStatus();
 
     SymbolDto addSymbol(SymbolDto symbol);
 
@@ -20,7 +20,7 @@ public interface SymbolService {
 
     Map<String, List<String>> getSymbolTradingPairMap();
 
-    QuoteDto retrieveQuote(SymbolDto symbolDto);
+//    QuoteDto retrieveQuote(SymbolDto symbolDto);
 
     String convertCurrency(ConvertCurrencyDto convertCurrencyDto);
 

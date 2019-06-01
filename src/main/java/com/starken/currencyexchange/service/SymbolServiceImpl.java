@@ -35,10 +35,10 @@ public class SymbolServiceImpl implements SymbolService {
         return ecbService.getSymbolsMap();
     }
 
-    @Override
-    public QuoteDto retrieveQuote(SymbolDto symbolDto) {
-        return forex1Service.retrieveQuote(symbolDto);
-    }
+//    @Override
+//    public QuoteDto retrieveQuote(SymbolDto symbolDto) {
+//        return forex1Service.retrieveQuote(symbolDto);
+//    }
 
     @Override
     public RateDto retrieveRate(SymbolDto symbolDto) {
@@ -67,10 +67,10 @@ public class SymbolServiceImpl implements SymbolService {
         return savedSymbolDtoList;
     }
 
-    @Override
-    public boolean getMarketStatus() {
-        return forex1Service.getMarketStatus();
-    }
+//    @Override
+//    public boolean getMarketStatus() {
+//        return forex1Service.getMarketStatus();
+//    }
 
     @Override
     public SymbolDto addSymbol(SymbolDto symbolDto) {

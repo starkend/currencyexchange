@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface Forex1Service {
 
-    List<SymbolDto> getSymbols();
-
-    Boolean getMarketStatus();
-
-    CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto);
-
-    QuoteDto retrieveQuote(SymbolDto symbolDto);
+//    List<SymbolDto> getSymbols();
+//
+//    Boolean getMarketStatus();
+//
+//    CurrencyDto convertCurrency(ConvertCurrencyDto convertCurrencyDto);
+//
+//    QuoteDto retrieveQuote(SymbolDto symbolDto);
 
 }

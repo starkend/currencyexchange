@@ -24,10 +24,10 @@ public class SymbolController {
         return symbolService.addSymbol(symbolDto);
     }
 
-    @PostMapping("retrieveQuote")
-    public QuoteDto getQuote(@RequestBody String symbolDto) {
-        return symbolService.retrieveQuote(new SymbolDto(symbolDto));
-    }
+//    @PostMapping("retrieveQuote")
+//    public QuoteDto getQuote(@RequestBody String symbolDto) {
+//        return symbolService.retrieveQuote(new SymbolDto(symbolDto));
+//    }
 
     @PostMapping("retrieveRate")
     public RateDto getRate(@RequestBody SymbolDto symbolDto) {
