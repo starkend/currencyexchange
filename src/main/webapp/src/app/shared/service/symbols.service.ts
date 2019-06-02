@@ -35,10 +35,6 @@ export class SymbolsService {
     return this.http.post<Symbol>(environment.apiUrl + '/addSymbol', symbol );
   }
 
-  getQuote(symbol: Symbol): Observable<Quote>  {
-    return this.http.post<Quote>(environment.apiUrl + '/retrieveQuote', symbol);
-  }
-
   getRate(symbol: Symbol): Observable<Rate>  {
     return this.http.post<Rate>(environment.apiUrl + '/retrieveRate', symbol);
   }

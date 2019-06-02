@@ -40,9 +40,6 @@ public class SymbolServiceImplIntegrationTest {
     private SymbolRepository symbolRepository;
 
     @MockBean
-    private Forex1Service forex1Service;
-
-    @MockBean
     private EcbService ecbService;
 
     @Test

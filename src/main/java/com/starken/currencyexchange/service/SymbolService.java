@@ -12,15 +12,11 @@ public interface SymbolService {
 
     List<SymbolDto> getSavedSymbols();
 
-//    boolean getMarketStatus();
-
     SymbolDto addSymbol(SymbolDto symbol);
 
     Symbol findBySymbolPair(String symbolPair);
 
     Map<String, List<String>> getSymbolTradingPairMap();
-
-//    QuoteDto retrieveQuote(SymbolDto symbolDto);
 
     String convertCurrency(ConvertCurrencyDto convertCurrencyDto);
 
