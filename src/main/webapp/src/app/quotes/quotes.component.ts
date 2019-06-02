@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Symbol} from '../shared/model/symbol.model';
-import {Quote} from '../shared/model/quote.model';
 import {Rate} from '../shared/model/rate.model';
 import {SymbolsService} from '../shared/service/symbols.service';
 
@@ -16,7 +15,6 @@ export class QuotesComponent implements OnInit {
   quotePair: Symbol;
   symbol2: string;
   symbolToList: Array<string>;
-  quote: Quote;
   rate: Rate;
 
   constructor(private symbolsService: SymbolsService) { }
@@ -24,9 +22,7 @@ export class QuotesComponent implements OnInit {
   ngOnInit() {
     this.getSymbolsMap();
     this.quotePair = new Symbol('','');
-    this.quote = new Quote();
     this.rate = new Rate();
-
   }
 
   getSymbolsMap() {

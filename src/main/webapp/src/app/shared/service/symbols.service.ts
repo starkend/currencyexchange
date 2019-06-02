@@ -3,7 +3,6 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 // import { catchError} from 'rxjs/operators';
 import { Symbol} from '../model/symbol.model';
-import {Quote} from '../model/quote.model';
 import {ConvertCurrency} from '../model/convert-currency.model';
 import {Rate} from "../model/rate.model";
 import {environment} from '../../../environments/environment';
