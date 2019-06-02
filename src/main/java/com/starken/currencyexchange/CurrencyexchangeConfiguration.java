@@ -23,10 +23,10 @@ public class CurrencyexchangeConfiguration implements WebMvcConfigurer {
     @Bean
     public ObjectMapper objectMapper() { return new ObjectMapper();}
 
-    @Bean
-    public Forex1Service forex1Service() {
-        return new Forex1ServiceImpl();
-    }
+//    @Bean
+//    public Forex1Service forex1Service() {
+//        return new Forex1ServiceImpl();
+//    }
 
     @Bean
     public SymbolService symbolService() { return new SymbolServiceImpl(); }

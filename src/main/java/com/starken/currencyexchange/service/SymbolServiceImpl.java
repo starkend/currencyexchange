@@ -14,8 +14,8 @@ import java.util.stream.StreamSupport;
 @Service
 public class SymbolServiceImpl implements SymbolService {
 
-    @Autowired
-    Forex1Service forex1Service;
+//    @Autowired
+//    Forex1Service forex1Service;
 
     @Autowired
     EcbService ecbService;
