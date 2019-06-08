@@ -1,6 +1,8 @@
 package com.starken.currencyexchange.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.starken.currencyexchange.dto.BaseCoinbaseDto;
 import com.starken.currencyexchange.dto.CurrenciesDto;
 import com.starken.currencyexchange.dto.CurrencyDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,7 @@ public class CoinbaseServiceImpl implements CoinbaseService {
                 entity,
                 String.class);
 
-        return processCurrenciesResponse(response);
+        return processBaseResponse(response);
     }
 
     private List<CurrencyDto> processCurrenciesResponse(HttpEntity<String> response) {
@@ -46,6 +48,24 @@ public class CoinbaseServiceImpl implements CoinbaseService {
         if (response != null) {
             try {
                 currenciesDto = objectMapper.readValue(response.getBody(), CurrenciesDto.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return currenciesDto.getData();
+
+    }
+
+    private List<CurrencyDto> processBaseResponse(HttpEntity<String> response) {
+        BaseCoinbaseDto<List<CurrencyDto>> currenciesDto;
+
+        if (response != null) {
+            try {
+                currenciesDto = objectMapper.readValue(response.getBody(), new TypeReference<BaseCoinbaseDto<List<CurrencyDto>>>() {});
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
