@@ -1,4 +1,9 @@
 package com.starken.currencyexchange.service;
 
-public class CoinbaseService {
+import com.starken.currencyexchange.dto.CurrencyDto;
+
+import java.util.List;
+
+public interface CoinbaseService {
+    public List<CurrencyDto> getCurrencies();
 }

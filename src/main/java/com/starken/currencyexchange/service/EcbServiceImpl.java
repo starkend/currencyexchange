@@ -63,10 +63,8 @@ public class EcbServiceImpl implements EcbService {
 
         for (String symbol : symbolsList) {
             List<String> predicateList = new ArrayList<>(symbolsList);
-//            predicateList.addAll(symbolsList);
 
             predicateList.remove(symbol);
-
             symbolsMap.put(symbol, predicateList);
         }
 
