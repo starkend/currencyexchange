@@ -3,6 +3,7 @@ package com.starken.currencyexchange.service;
 import com.starken.currencyexchange.CurrencyexchangeApplication;
 import com.starken.currencyexchange.CurrencyexchangeConfiguration;
 import com.starken.currencyexchange.dto.CurrencyDto;
+import com.starken.currencyexchange.dto.SymbolRatesDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,14 @@ public class CoinbaseServiceIntegrationTest {
 
         assertNotNull(currencyDtoList);
         assertFalse(currencyDtoList.isEmpty());
+    }
+
+    @Test
+    public void whenGetRates_thenReturnPopulatedRates() {
+        SymbolRatesDto symbolRatesDto = coinbaseService.getLatestSymbolRatesByBase("USD");
+
+        assertNotNull(symbolRatesDto);
+        assertNotNull(symbolRatesDto.getRates());
     }
 
 }

@@ -13,6 +13,10 @@ import java.util.Map;
 public class SymbolRatesDto {
     private String base;
     private Date date;
+
+    private String currency;
+
+
     private List<RateDto> rates;
 
     public String getBase() {
@@ -51,6 +55,15 @@ public class SymbolRatesDto {
     public void setRates(List<RateDto> rates) {
         this.rates = rates;
     }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
 
     @Override
     public String toString() {
