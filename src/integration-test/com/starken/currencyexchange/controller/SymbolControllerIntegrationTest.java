@@ -1,8 +1,9 @@
 package com.starken.currencyexchange.controller;
 
 import com.starken.currencyexchange.dto.SymbolDto;
+import com.starken.currencyexchange.service.CoinbaseService;
+import com.starken.currencyexchange.service.EcbService;
 import com.starken.currencyexchange.service.SymbolService;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,17 +32,25 @@ public class SymbolControllerIntegrationTest {
     private MockMvc mvc;
 
     @MockBean
-    private SymbolService service;
+    private SymbolService symbolService;
 
-    //TODO Fix SymbolController test
-    @Ignore
+    @MockBean
+    private RestTemplate restTemplate;
+
+    @MockBean
+    private EcbService ecbService;
+
+    @MockBean
+    private CoinbaseService coinbaseService;
+
+
     @Test
     public void givenSymbols_whenGetSymbols_thenReturnSymbolJsonArray() throws Exception {
         SymbolDto usdAud = new SymbolDto("USDAUD");
 
         List<SymbolDto> symbolList = Arrays.asList(usdAud);
 
-        given(service.getSymbols()).willReturn(symbolList);
+        given(symbolService.getSymbols()).willReturn(symbolList);
 
         mvc.perform(get("/symbols")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -48,6 +58,5 @@ public class SymbolControllerIntegrationTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].symbolPair", is(usdAud.getSymbolPair())));
     }
-
 
 }

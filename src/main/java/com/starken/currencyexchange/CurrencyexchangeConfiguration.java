@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@PropertySource("application.properties")
+@PropertySource("classpath:application.properties")
 public class CurrencyexchangeConfiguration implements WebMvcConfigurer {
 
     @Bean

@@ -1,10 +1,10 @@
 package com.starken.currencyexchange.repository;
 
 import com.starken.currencyexchange.model.Symbol;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -13,6 +13,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class SymbolRepositoryIntegrationTest {
 
     @Autowired
@@ -21,8 +22,6 @@ public class SymbolRepositoryIntegrationTest {
     @Autowired
     SymbolRepository symbolRepository;
 
-    //TODO Fix SymbolRepository test
-    @Ignore
     @Test
     public void whenFindBySymbolPair_thenReturnSymbol() {
         // given
@@ -36,7 +35,6 @@ public class SymbolRepositoryIntegrationTest {
 
         // then
         assertThat(symbol.getSymbolPair()).isEqualTo(found.getSymbolPair());
-
     }
 
 }
