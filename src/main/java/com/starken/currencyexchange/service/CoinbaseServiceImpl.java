@@ -1,10 +1,7 @@
 package com.starken.currencyexchange.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starken.currencyexchange.dto.CoinbaseRatesDto;
-import com.starken.currencyexchange.dto.CurrenciesDto;
-import com.starken.currencyexchange.dto.CurrencyDto;
-import com.starken.currencyexchange.dto.SymbolRatesDto;
+import com.starken.currencyexchange.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -56,6 +53,40 @@ public class CoinbaseServiceImpl implements CoinbaseService {
                 String.class);
 
         return processRatesResponse(response);
+    }
+
+    @Override
+    public CoinbasePriceDto getBuyPrice(SymbolDto symbolDto) {
+        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
+
+        String buyPriceUrl = BASE_URL
+                + "/prices/" + symbolDto.getSymbol1() + "-"
+                + symbolDto.getSymbol2() + "/buy";
+
+        HttpEntity<String> response = restTemplate.exchange(
+                buyPriceUrl,
+                HttpMethod.GET,
+                entity,
+                String.class);
+
+        return processBuyPriceResponse(response);
+    }
+
+    private CoinbasePriceDto processBuyPriceResponse(HttpEntity<String> response) {
+        CoinbasePriceDto coinbasePriceDto;
+
+        if (response != null) {
+            try {
+                coinbasePriceDto = objectMapper.readValue(response.getBody(), CoinbasePriceDto.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return coinbasePriceDto;
     }
 
     private SymbolRatesDto processRatesResponse(HttpEntity<String> response) {

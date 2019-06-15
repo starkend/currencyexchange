@@ -2,7 +2,9 @@ package com.starken.currencyexchange.service;
 
 import com.starken.currencyexchange.CurrencyexchangeApplication;
 import com.starken.currencyexchange.CurrencyexchangeConfiguration;
+import com.starken.currencyexchange.dto.CoinbasePriceDto;
 import com.starken.currencyexchange.dto.CurrencyDto;
+import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +39,14 @@ public class CoinbaseServiceIntegrationTest {
 
         assertNotNull(symbolRatesDto);
         assertNotNull(symbolRatesDto.getRates());
+    }
+
+    @Test
+    public void whenGetBuyPriceOfPair_thenReturnBuyPriceAmount() {
+        SymbolDto symbolDto = new SymbolDto("BTCUSD");
+        CoinbasePriceDto coinbasePriceDto = coinbaseService.getBuyPrice(symbolDto);
+
+        assertNotNull(coinbasePriceDto);
     }
 
 }
