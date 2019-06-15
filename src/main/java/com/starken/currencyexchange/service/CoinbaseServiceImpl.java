@@ -26,7 +26,7 @@ public class CoinbaseServiceImpl implements CoinbaseService {
     private String BASE_URL;
 
     @Override
-    public List<CurrencyDto> getCurrencies() {
+    public CurrenciesDto getCurrencies() {
         HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
 
         String currenciesUrl = BASE_URL + "/currencies";
@@ -114,7 +114,7 @@ public class CoinbaseServiceImpl implements CoinbaseService {
         return null;
     }
 
-    private List<CurrencyDto> processCurrenciesResponse(HttpEntity<String> response) {
+    private CurrenciesDto processCurrenciesResponse(HttpEntity<String> response) {
         CurrenciesDto currenciesDto;
 
         if (response != null) {
@@ -128,7 +128,7 @@ public class CoinbaseServiceImpl implements CoinbaseService {
             return null;
         }
 
-        return currenciesDto.getData();
+        return currenciesDto;
 
     }
 

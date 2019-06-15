@@ -1,14 +1,12 @@
 package com.starken.currencyexchange.service;
 
 import com.starken.currencyexchange.dto.CoinbasePriceDto;
-import com.starken.currencyexchange.dto.CurrencyDto;
+import com.starken.currencyexchange.dto.CurrenciesDto;
 import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
 
-import java.util.List;
-
 public interface CoinbaseService {
-    public List<CurrencyDto> getCurrencies();
+    public CurrenciesDto getCurrencies();
 
     SymbolRatesDto getLatestSymbolRatesByBase(String usd);
 
