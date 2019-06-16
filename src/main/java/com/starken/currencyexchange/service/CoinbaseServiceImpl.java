@@ -26,81 +26,51 @@ public class CoinbaseServiceImpl implements CoinbaseService {
 
     @Override
     public CurrenciesDto getCurrencies() {
-        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
-
         String currenciesUrl = BASE_URL + "/currencies";
 
-        HttpEntity<String> response = restTemplate.exchange(
-                currenciesUrl,
-                HttpMethod.GET,
-                entity,
-                String.class);
+        HttpEntity<String> response = getStringResponse(currenciesUrl);
 
         return processCurrenciesResponse(response);
     }
 
     @Override
     public SymbolRatesDto getLatestSymbolRatesByBase(String usd) {
-        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
-
         String exchangeRatesUrl = BASE_URL + "/exchange-rates";
 
-        HttpEntity<String> response = restTemplate.exchange(
-                exchangeRatesUrl,
-                HttpMethod.GET,
-                entity,
-                String.class);
+        HttpEntity<String> response = getStringResponse(exchangeRatesUrl);
 
         return processRatesResponse(response);
     }
 
     @Override
     public CoinbasePriceDto getBuyPrice(SymbolDto symbolDto) {
-        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
-
         String buyPriceUrl = BASE_URL
                 + "/prices/" + symbolDto.getSymbol1() + "-"
                 + symbolDto.getSymbol2() + "/buy";
 
-        HttpEntity<String> response = restTemplate.exchange(
-                buyPriceUrl,
-                HttpMethod.GET,
-                entity,
-                String.class);
+        HttpEntity<String> response = getStringResponse(buyPriceUrl);
 
         return processPriceResponse(response);
     }
 
     @Override
     public CoinbasePriceDto getSellPrice(SymbolDto symbolDto) {
-        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
-
-        String buyPriceUrl = BASE_URL
+        String sellPriceUrl = BASE_URL
                 + "/prices/" + symbolDto.getSymbol1() + "-"
                 + symbolDto.getSymbol2() + "/sell";
 
-        HttpEntity<String> response = restTemplate.exchange(
-                buyPriceUrl,
-                HttpMethod.GET,
-                entity,
-                String.class);
+        HttpEntity<String> response = getStringResponse(sellPriceUrl);
 
         return processPriceResponse(response);
     }
 
     @Override
     public CoinbasePriceDto getSpotPrice(SymbolDto symbolDto) {
-        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
-
-        String buyPriceUrl = BASE_URL
+        String spotPriceUrl = BASE_URL
                 + "/prices/" + symbolDto.getSymbol1() + "-"
                 + symbolDto.getSymbol2() + "/spot";
 
-        HttpEntity<String> response = restTemplate.exchange(
-                buyPriceUrl,
-                HttpMethod.GET,
-                entity,
-                String.class);
+        HttpEntity<String> response = getStringResponse(spotPriceUrl);
 
         return processPriceResponse(response);
     }
@@ -165,10 +135,20 @@ public class CoinbaseServiceImpl implements CoinbaseService {
 
     }
 
-
     private HttpHeaders buildHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
         return headers;
+    }
+
+
+    private HttpEntity<String> getStringResponse(String url) {
+        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
+
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                entity,
+                String.class);
     }
 }
