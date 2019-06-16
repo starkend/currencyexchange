@@ -88,6 +88,23 @@ public class CoinbaseServiceImpl implements CoinbaseService {
         return processPriceResponse(response);
     }
 
+    @Override
+    public CoinbasePriceDto getSpotPrice(SymbolDto symbolDto) {
+        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
+
+        String buyPriceUrl = BASE_URL
+                + "/prices/" + symbolDto.getSymbol1() + "-"
+                + symbolDto.getSymbol2() + "/spot";
+
+        HttpEntity<String> response = restTemplate.exchange(
+                buyPriceUrl,
+                HttpMethod.GET,
+                entity,
+                String.class);
+
+        return processPriceResponse(response);
+    }
+
     private CoinbasePriceDto processPriceResponse(HttpEntity<String> response) {
         CoinbasePriceDto coinbasePriceDto;
 

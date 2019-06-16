@@ -13,4 +13,6 @@ public interface CoinbaseService {
     CoinbasePriceDto getBuyPrice(SymbolDto symbolDto);
 
     CoinbasePriceDto getSellPrice(SymbolDto symbolDto);
+
+    CoinbasePriceDto getSpotPrice(SymbolDto symbolDto);
 }
