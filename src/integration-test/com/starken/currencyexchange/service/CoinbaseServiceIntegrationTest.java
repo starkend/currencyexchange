@@ -47,4 +47,12 @@ public class CoinbaseServiceIntegrationTest {
         assertNotNull(coinbasePriceDto);
     }
 
+    @Test
+    public void whenGetSellPriceOfPair_thenReturnSellPriceAmount() {
+        SymbolDto symbolDto = new SymbolDto("BTCUSD");
+        CoinbasePriceDto coinbasePriceDto = coinbaseService.getSellPrice(symbolDto);
+
+        assertNotNull(coinbasePriceDto);
+    }
+
 }

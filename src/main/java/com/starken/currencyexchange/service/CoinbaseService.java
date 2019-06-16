@@ -11,4 +11,6 @@ public interface CoinbaseService {
     SymbolRatesDto getLatestSymbolRatesByBase(String usd);
 
     CoinbasePriceDto getBuyPrice(SymbolDto symbolDto);
+
+    CoinbasePriceDto getSellPrice(SymbolDto symbolDto);
 }
