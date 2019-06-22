@@ -1,12 +1,11 @@
 package com.starken.currencyexchange.controller;
 
 import com.starken.currencyexchange.model.Currency;
-import com.starken.currencyexchange.repository.CurrencyRepository;
+import com.starken.currencyexchange.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,12 +13,10 @@ import java.util.List;
 public class CurrencyController {
 
     @Autowired
-    CurrencyRepository currencyRepository;
+    CurrencyService currencyService;
 
     @RequestMapping("/all")
     public List<Currency> getAllCurrencies() {
-        List<Currency> currencyList = new ArrayList<>();
-        currencyRepository.findAll().forEach(currencyList::add);
-        return currencyList;
+        return currencyService.findAll();
     }
 }
