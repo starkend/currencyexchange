@@ -12,8 +12,6 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -91,9 +89,4 @@ public class CurrencyexchangeConfiguration implements WebMvcConfigurer {
         }
         return client;
     }
-
-//    @Bean
-//    public ElasticsearchOperations elasticsearchTemplate() throws Exception {
-//        return new ElasticsearchTemplate(client());
-//    }
 }
