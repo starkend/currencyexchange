@@ -6,7 +6,7 @@ import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.dto.SymbolRatesDto;
 
 public interface CoinbaseService {
-    public CurrenciesDto getCurrencies();
+    CurrenciesDto getCurrencies();
 
     SymbolRatesDto getLatestSymbolRatesByBase(String usd);
 
