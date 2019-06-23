@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +51,7 @@ public class HistoricalSymbolRatesDto {
         this.setRates(ratesDtoList);
     }
 
-    static class RatesDto {
+    static class RatesDto implements Comparable<RatesDto> {
         private String date;
         private List<RateDto> rateList;
 
@@ -68,6 +69,12 @@ public class HistoricalSymbolRatesDto {
 
         public void setRateList(List<RateDto> rateList) {
             this.rateList = rateList;
+        }
+
+        @Override
+        public int compareTo(RatesDto o) {
+            return Comparator.comparing(RatesDto::getDate)
+                    .compare(this,o);
         }
     }
 
