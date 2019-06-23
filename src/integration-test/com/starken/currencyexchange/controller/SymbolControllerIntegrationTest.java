@@ -1,8 +1,7 @@
 package com.starken.currencyexchange.controller;
 
 import com.starken.currencyexchange.dto.SymbolDto;
-import com.starken.currencyexchange.service.CoinbaseService;
-import com.starken.currencyexchange.service.EcbService;
+import com.starken.currencyexchange.repository.CurrencyRepository;
 import com.starken.currencyexchange.service.SymbolService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,10 +37,7 @@ public class SymbolControllerIntegrationTest {
     private RestTemplate restTemplate;
 
     @MockBean
-    private EcbService ecbService;
-
-    @MockBean
-    private CoinbaseService coinbaseService;
+    private CurrencyRepository currencyRepository;
 
 
     @Test
