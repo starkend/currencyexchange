@@ -1,10 +1,7 @@
 package com.starken.currencyexchange.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starken.currencyexchange.dto.ConvertCurrencyDto;
-import com.starken.currencyexchange.dto.RateDto;
-import com.starken.currencyexchange.dto.SymbolDto;
-import com.starken.currencyexchange.dto.SymbolRatesDto;
+import com.starken.currencyexchange.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -24,6 +21,8 @@ import java.util.stream.Collectors;
 public class EcbServiceImpl implements EcbService {
 
     private static final String BASE_QUERY_PARAM = "base";
+    private static final String START_AT_QUERY_PARAM = "start_at";
+    private static final String END_AT_QUERY_PARAM = "end_at";
 
     @Autowired
     private RestTemplate restTemplate;
@@ -34,6 +33,8 @@ public class EcbServiceImpl implements EcbService {
     @Value("${service.ecb.url.latest}")
     private String URL_LATEST;
 
+    @Value("${service.ecb.url.history}")
+    private String URL_HISTORY;
 
     @Override
     public List<String> getSymbolsList() {
@@ -122,6 +123,48 @@ public class EcbServiceImpl implements EcbService {
 
         return total.toString();
     }
+
+    @Override
+    public HistoricalSymbolRatesDto getHistoricalRatesList() {
+        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
+
+        String startDate =  "2018-01-01";
+        String endDate =    "2018-12-31";
+
+        MultiValueMap<String, String> queryParams = getHistoricalRatesParams(startDate, endDate);
+
+        HttpEntity<String> response =
+                getStringHttpEntity(getUriComponentsBuilderWithParams(URL_HISTORY, queryParams), entity);
+
+
+        return processHistoricalRates(response);
+    }
+
+    private HistoricalSymbolRatesDto processHistoricalRates(HttpEntity<String> response) {
+        HistoricalSymbolRatesDto historicalSymbolRatesDto;
+
+        if (response != null) {
+            try {
+                historicalSymbolRatesDto = objectMapper.readValue(response.getBody(), HistoricalSymbolRatesDto.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+        return historicalSymbolRatesDto;
+    }
+
+    private MultiValueMap<String, String> getHistoricalRatesParams(String startDate, String endDate) {
+        MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
+
+        queryParams.put(START_AT_QUERY_PARAM, Collections.singletonList(startDate));
+        queryParams.put(END_AT_QUERY_PARAM, Collections.singletonList(endDate));
+        return queryParams;
+    }
+
 
     @Override
     public SymbolRatesDto getLatestSymbolRates() {

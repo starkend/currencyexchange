@@ -2,10 +2,7 @@ package com.starken.currencyexchange.service;
 
 import com.starken.currencyexchange.CurrencyexchangeApplication;
 import com.starken.currencyexchange.CurrencyexchangeConfiguration;
-import com.starken.currencyexchange.dto.ConvertCurrencyDto;
-import com.starken.currencyexchange.dto.RateDto;
-import com.starken.currencyexchange.dto.SymbolDto;
-import com.starken.currencyexchange.dto.SymbolRatesDto;
+import com.starken.currencyexchange.dto.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,4 +87,13 @@ public class EcbServiceIntegrationTest {
         assertFalse(convertedCurrencyString.isBlank());
     }
 
+    @Test
+    public void whenGetHistoricalRates_thenReturnPopulatedHistoricalRatesSymbolDtoList() {
+        HistoricalSymbolRatesDto historicalSymbolRatesDto;
+
+        historicalSymbolRatesDto = ecbService.getHistoricalRatesList();
+
+        assertNotNull(historicalSymbolRatesDto);
+        assertNotNull(historicalSymbolRatesDto.getRates());
+    }
 }
