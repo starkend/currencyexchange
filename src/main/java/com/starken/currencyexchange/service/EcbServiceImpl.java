@@ -15,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -128,14 +129,13 @@ public class EcbServiceImpl implements EcbService {
     public HistoricalSymbolRatesDto getHistoricalRatesList() {
         HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
 
-        String startDate =  "2018-01-01";
-        String endDate =    "2018-12-31";
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusYears(1);
 
-        MultiValueMap<String, String> queryParams = getHistoricalRatesParams(startDate, endDate);
+        MultiValueMap<String, String> queryParams = getHistoricalRatesParams(startDate.toString(), endDate.toString());
 
         HttpEntity<String> response =
                 getStringHttpEntity(getUriComponentsBuilderWithParams(URL_HISTORY, queryParams), entity);
-
 
         return processHistoricalRates(response);
     }

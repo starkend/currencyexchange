@@ -94,6 +94,6 @@ public class EcbServiceIntegrationTest {
         historicalSymbolRatesDto = ecbService.getHistoricalRatesList();
 
         assertNotNull(historicalSymbolRatesDto);
-        assertNotNull(historicalSymbolRatesDto.getRates());
+        assertFalse(historicalSymbolRatesDto.getRates().isEmpty());
     }
 }
