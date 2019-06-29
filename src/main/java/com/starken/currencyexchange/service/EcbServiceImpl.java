@@ -160,8 +160,6 @@ public class EcbServiceImpl implements EcbService {
             return null;
         }
 
-        historicalSymbolRatesDto.setRates(historicalSymbolRatesDto.getRates().stream().sorted().collect(Collectors.toList()));
-
         return historicalSymbolRatesDto;
     }
 

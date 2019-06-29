@@ -3,10 +3,7 @@ package com.starken.currencyexchange.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HistoricalSymbolRatesDto {
@@ -44,10 +41,12 @@ public class HistoricalSymbolRatesDto {
                 rate.setRate(String.valueOf(rates.get(rateKey).get(rateSymbolKey)));
                 rateDtos.add(rate);
             }
+            Collections.sort(rateDtos);
             ratesDto.setRateList(rateDtos);
             ratesDtoList.add(ratesDto);
         }
 
+        Collections.sort(ratesDtoList);
         this.setRates(ratesDtoList);
     }
 
