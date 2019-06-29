@@ -3,29 +3,20 @@ package com.starken.currencyexchange.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class HistoricalSymbolRatesDto {
+
+public class HistoricalSymbolRatesDto implements Serializable {
 
     private String base;
+
     private List<RatesDto> rates;
-
-    public String getBase() {
-        return base;
-    }
-
-    public void setBase(String base) {
-        this.base = base;
-    }
-
-    public List<RatesDto> getRates() {
-        return rates;
-    }
-
-    public void setRates(List<RatesDto> rates) {
-        this.rates = rates;
-    }
 
     @JsonProperty("rates")
     private void unpackNestedRates(Map<String, Map<String, String>> rates) {
@@ -50,31 +41,21 @@ public class HistoricalSymbolRatesDto {
         this.setRates(ratesDtoList);
     }
 
-    static class RatesDto implements Comparable<RatesDto> {
-        private String date;
-        private List<RateDto> rateList;
 
-        public String getDate() {
-            return date;
-        }
+    public String getBase() {
+        return base;
+    }
 
-        public void setDate(String date) {
-            this.date = date;
-        }
+    public void setBase(String base) {
+        this.base = base;
+    }
 
-        public List<RateDto> getRateList() {
-            return rateList;
-        }
+    public List<RatesDto> getRates() {
+        return rates;
+    }
 
-        public void setRateList(List<RateDto> rateList) {
-            this.rateList = rateList;
-        }
-
-        @Override
-        public int compareTo(RatesDto o) {
-            return Comparator.comparing(RatesDto::getDate)
-                    .compare(this,o);
-        }
+    public void setRates(List<RatesDto> rates) {
+        this.rates = rates;
     }
 
 }

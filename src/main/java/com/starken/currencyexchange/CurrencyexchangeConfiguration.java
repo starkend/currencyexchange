@@ -60,6 +60,9 @@ public class CurrencyexchangeConfiguration implements WebMvcConfigurer {
         return new CurrencyServiceImpl();
     }
 
+    @Bean
+    public HistoricalSymbolRatesService historicalSymbolRatesService() { return new HistoricalSymbolRatesServiceImpl(); }
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**");
