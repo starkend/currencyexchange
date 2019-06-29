@@ -128,17 +128,7 @@ public class EcbServiceImpl implements EcbService {
 
     @Override
     public HistoricalSymbolRatesDto getHistoricalRates() {
-        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
-
-        LocalDate endDate = LocalDate.now();
-        LocalDate startDate = endDate.minusYears(1);
-
-        MultiValueMap<String, String> queryParams = getHistoricalRatesParams("", startDate.toString(), endDate.toString());
-
-        HttpEntity<String> response =
-                getStringHttpEntity(getUriComponentsBuilderWithParams(URL_HISTORY, queryParams), entity);
-
-        return processHistoricalRates(response);
+        return getHistoricalRatesByBase("");
     }
 
     @Override

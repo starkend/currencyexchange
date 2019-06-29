@@ -108,24 +108,3 @@ public class EcbServiceIntegrationTest {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
