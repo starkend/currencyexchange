@@ -5,6 +5,7 @@ import {QuotesComponent} from './quotes/quotes.component';
 import {HomeComponent} from './home/home.component';
 import {ConvertCurrencyComponent} from './convert-currency/convert-currency.component';
 import {RatesComponent} from './rates/rates.component';
+import {HistoricalRatesComponent} from './historical-rates/historical-rates.component';
 
 const appRoutes: Routes = [
 
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
   { path: 'quotes', component: QuotesComponent },
   { path: 'convert-currency', component: ConvertCurrencyComponent },
   { path: 'rates', component: RatesComponent },
+  { path: 'historical-rates', component: HistoricalRatesComponent },
   { path: 'home', component: HomeComponent }
 ];
 

@@ -26,6 +26,7 @@ import {HomeComponent} from './home/home.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import { ConvertCurrencyComponent } from './convert-currency/convert-currency.component';
 import { RatesComponent } from './rates/rates.component';
+import { HistoricalRatesComponent } from './historical-rates/historical-rates.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RatesComponent } from './rates/rates.component';
     HomeComponent,
     NavigationComponent,
     ConvertCurrencyComponent,
-    RatesComponent
+    RatesComponent,
+    HistoricalRatesComponent
   ],
   imports: [
     BrowserModule,

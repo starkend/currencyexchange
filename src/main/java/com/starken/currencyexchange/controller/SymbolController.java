@@ -1,6 +1,8 @@
 package com.starken.currencyexchange.controller;
 
 import com.starken.currencyexchange.dto.*;
+import com.starken.currencyexchange.model.HistoricalRates;
+import com.starken.currencyexchange.service.HistoricalSymbolRatesService;
 import com.starken.currencyexchange.service.SymbolService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,6 +20,9 @@ public class SymbolController {
 
     @Autowired
     SymbolService symbolService;
+
+    @Autowired
+    HistoricalSymbolRatesService historicalSymbolRatesService;
 
     @PostMapping("/addSymbol")
     public SymbolDto addSymbol(@RequestBody SymbolDto symbolDto) {
@@ -55,9 +60,8 @@ public class SymbolController {
     }
 
     @GetMapping("/symbolsMap")
-    public Map<String, List<String>> getSymbolsMap() {
-        Map<String, List<String>> symbolMap = symbolService.getSymbolTradingPairMap();
+    public Map<String, List<String>> getSymbolsMap() { return symbolService.getSymbolTradingPairMap(); }
 
-        return symbolMap;
-    }
+    @GetMapping("/historicalRates")
+    public List<HistoricalRates> getAllHistoryRates() { return historicalSymbolRatesService.findAll(); }
 }
