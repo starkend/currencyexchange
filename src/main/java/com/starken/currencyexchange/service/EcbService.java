@@ -21,5 +21,7 @@ public interface EcbService {
 
     String convertCurrency(ConvertCurrencyDto convertCurrencyDto);
 
-    HistoricalSymbolRatesDto getHistoricalRatesList();
+    HistoricalSymbolRatesDto getHistoricalRates();
+
+    HistoricalSymbolRatesDto getHistoricalRatesByBase(String base);
 }

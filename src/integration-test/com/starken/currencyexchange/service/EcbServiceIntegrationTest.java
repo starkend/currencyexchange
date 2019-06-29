@@ -88,12 +88,44 @@ public class EcbServiceIntegrationTest {
     }
 
     @Test
-    public void whenGetHistoricalRates_thenReturnPopulatedHistoricalRatesSymbolDtoList() {
+    public void whenGetHistoricalRates_thenReturnPopulatedHistoricalRatesSymbolDto() {
         HistoricalSymbolRatesDto historicalSymbolRatesDto;
 
-        historicalSymbolRatesDto = ecbService.getHistoricalRatesList();
+        historicalSymbolRatesDto = ecbService.getHistoricalRates();
+
+        assertNotNull(historicalSymbolRatesDto);
+        assertFalse(historicalSymbolRatesDto.getRates().isEmpty());
+    }
+
+    @Test
+    public void whenHistoricalRatesByBase_thenReturnPopulatedHistoricalRatesSymbolDto() {
+        HistoricalSymbolRatesDto historicalSymbolRatesDto;
+
+        historicalSymbolRatesDto = ecbService.getHistoricalRatesByBase("USD");
 
         assertNotNull(historicalSymbolRatesDto);
         assertFalse(historicalSymbolRatesDto.getRates().isEmpty());
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

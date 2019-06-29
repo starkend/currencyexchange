@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -126,13 +127,28 @@ public class EcbServiceImpl implements EcbService {
     }
 
     @Override
-    public HistoricalSymbolRatesDto getHistoricalRatesList() {
+    public HistoricalSymbolRatesDto getHistoricalRates() {
         HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
 
         LocalDate endDate = LocalDate.now();
         LocalDate startDate = endDate.minusYears(1);
 
-        MultiValueMap<String, String> queryParams = getHistoricalRatesParams(startDate.toString(), endDate.toString());
+        MultiValueMap<String, String> queryParams = getHistoricalRatesParams("", startDate.toString(), endDate.toString());
+
+        HttpEntity<String> response =
+                getStringHttpEntity(getUriComponentsBuilderWithParams(URL_HISTORY, queryParams), entity);
+
+        return processHistoricalRates(response);
+    }
+
+    @Override
+    public HistoricalSymbolRatesDto getHistoricalRatesByBase(String base) {
+        HttpEntity<?> entity = new HttpEntity<>(buildHeaders());
+
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = endDate.minusYears(1);
+
+        MultiValueMap<String, String> queryParams = getHistoricalRatesParams(base, startDate.toString(), endDate.toString());
 
         HttpEntity<String> response =
                 getStringHttpEntity(getUriComponentsBuilderWithParams(URL_HISTORY, queryParams), entity);
@@ -159,9 +175,12 @@ public class EcbServiceImpl implements EcbService {
         return historicalSymbolRatesDto;
     }
 
-    private MultiValueMap<String, String> getHistoricalRatesParams(String startDate, String endDate) {
+    private MultiValueMap<String, String> getHistoricalRatesParams(String base, String startDate, String endDate) {
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
 
+        if (!StringUtils.isEmpty(base)) {
+            queryParams.put(BASE_QUERY_PARAM, Collections.singletonList(base));
+        }
         queryParams.put(START_AT_QUERY_PARAM, Collections.singletonList(startDate));
         queryParams.put(END_AT_QUERY_PARAM, Collections.singletonList(endDate));
         return queryParams;
