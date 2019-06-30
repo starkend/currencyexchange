@@ -1,7 +1,6 @@
 package com.starken.currencyexchange.service;
 
 import com.starken.currencyexchange.CurrencyexchangeApplication;
-import com.starken.currencyexchange.dto.HistoricalSymbolRatesDto;
 import com.starken.currencyexchange.model.HistoricalRates;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,12 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
 import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CurrencyexchangeApplication.class)
