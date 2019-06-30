@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Date;
 import java.util.List;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
@@ -66,6 +67,15 @@ public class HistoricalSymbolRatesServiceTest {
         historicalRates = historicalSymbolRatesService.findByBase("USD");
 
         assertFalse(historicalRates.isEmpty());
+    }
+
+    @Test
+    public void whenFindByBaseNotPresent_thenReturnEmptyList() {
+        List<HistoricalRates> historicalRates;
+
+        historicalRates = historicalSymbolRatesService.findByBase("XYZ");
+
+        assertTrue(historicalRates.isEmpty());
     }
 
 }
