@@ -28,4 +28,15 @@ public class HistoricalSymbolRatesServiceImpl implements HistoricalSymbolRatesSe
 
         return historicalRates;
     }
+
+    @Override
+    public List<HistoricalRates> findByBase(String base) {
+        Iterable<HistoricalRates> historicalRatesIterable = historicalSymbolRatesRepository.findByBase(base);
+        List<HistoricalRates> historicalRates;
+
+        historicalRates = StreamSupport.stream(historicalRatesIterable.spliterator(), false)
+                .collect(Collectors.toList());
+
+        return historicalRates;
+    }
 }

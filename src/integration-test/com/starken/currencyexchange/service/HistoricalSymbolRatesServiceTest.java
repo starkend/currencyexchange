@@ -56,7 +56,15 @@ public class HistoricalSymbolRatesServiceTest {
 
         historicalRates = historicalSymbolRatesService.findAll();
 
-        assertNotNull(historicalRates);
+        assertFalse(historicalRates.isEmpty());
+    }
+
+    @Test
+    public void whenFindByBase_thenReturnAllForBase() {
+        List<HistoricalRates> historicalRates;
+
+        historicalRates = historicalSymbolRatesService.findByBase("USD");
+
         assertFalse(historicalRates.isEmpty());
     }
 
