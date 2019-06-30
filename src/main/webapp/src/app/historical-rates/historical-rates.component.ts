@@ -9,12 +9,15 @@ import {SymbolsService} from "../shared/service/symbols.service";
 export class HistoricalRatesComponent implements OnInit {
   historicalRates: Array<any>;
   displayedColumns: Array<string>;
+  subColumns: Array<string>;
 
   constructor(private symbolsService: SymbolsService) { }
 
   ngOnInit() {
     this.getHistoricalRates();
-    this.displayedColumns = ['idColumn','base'];
+    this.displayedColumns = ['idColumn','base','rates'];
+    this.subColumns = ['date'];
+
   }
 
   getHistoricalRates() {
