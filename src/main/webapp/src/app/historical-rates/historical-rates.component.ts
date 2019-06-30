@@ -10,13 +10,15 @@ export class HistoricalRatesComponent implements OnInit {
   historicalRates: Array<any>;
   displayedColumns: Array<string>;
   subColumns: Array<string>;
+  subSubColumns: Array<string>;
 
   constructor(private symbolsService: SymbolsService) { }
 
   ngOnInit() {
     this.getHistoricalRates();
     this.displayedColumns = ['idColumn','base','rates'];
-    this.subColumns = ['date'];
+    this.subColumns = ['date','rateElement'];
+    this.subSubColumns = ['symbol','rate'];
 
   }
 

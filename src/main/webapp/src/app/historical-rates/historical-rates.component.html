@@ -22,16 +22,43 @@
       </ng-container>
 
       <ng-container matColumnDef="rates">
-        <th mat-header-cell *matHeaderCellDef width="300px"> Rates </th>
+        <th mat-header-cell *matHeaderCellDef width="400px"> Rates </th>
         <td mat-cell *matCellDef="let rate">
 
           <table mat-table  [dataSource]="rate.rates" class="mat-elevation-z8">
             <ng-container matColumnDef="date">
-              <th mat-header-cell *matHeaderCellDef width="300px"> Date </th>
+              <th mat-header-cell *matHeaderCellDef width="100px"> Date </th>
               <td mat-cell *matCellDef="let rateDto">
                 {{rateDto.date}}
               </td>
             </ng-container>
+
+            <ng-container matColumnDef="rateElement">
+
+              <th mat-header-cell *matHeaderCellDef width="300px"> Rate List </th>
+              <td mat-cell *matCellDef="let rateElement">
+
+                <table mat-table  [dataSource]="rateElement.rateList" class="mat-elevation-z8">
+                  <ng-container matColumnDef="symbol">
+                    <th mat-header-cell *matHeaderCellDef width="100px"> Symbol </th>
+                    <td mat-cell *matCellDef="let rateEl">
+                      {{rateEl.symbol}}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="rate">
+                    <th mat-header-cell *matHeaderCellDef width="200px"> Rate </th>
+                    <td mat-cell *matCellDef="let rateEl">
+                      {{rateEl.rate}}
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="subSubColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: subSubColumns;"></tr>
+
+                </table>
+              </td>
+            </ng-container>
+
 
             <tr mat-header-row *matHeaderRowDef="subColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: subColumns;"></tr>
