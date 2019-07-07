@@ -38,7 +38,7 @@ export class SymbolsListComponent implements OnInit {
 
   addSymbol(symbol: Symbol) {
     this.symbolsService.addSymbol(symbol)
-      .subscribe(()=> {
+      .subscribe(() => {
         this.getSavedSymbols();
       });
   }

@@ -10,7 +10,7 @@ import {Rate} from '../shared/model/rate.model';
 export class RatesComponent implements OnInit {
 
   symbols: Array<any>;
-  selectedSymbol: String;
+  selectedSymbol: string;
   rates: Array<Rate>;
   displayedColumns: Array<string>;
 
@@ -30,7 +30,7 @@ export class RatesComponent implements OnInit {
   submitRate(baseSymbol: String) {
     this.symbolsService.getRatesForSymbol(baseSymbol).subscribe( data => {
       this.rates = data;
-    })
+    });
   }
 
 }

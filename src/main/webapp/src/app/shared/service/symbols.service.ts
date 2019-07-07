@@ -4,7 +4,7 @@ import {Observable, throwError} from 'rxjs';
 // import { catchError} from 'rxjs/operators';
 import { Symbol} from '../model/symbol.model';
 import {ConvertCurrency} from '../model/convert-currency.model';
-import {Rate} from "../model/rate.model";
+import {Rate} from '../model/rate.model';
 import {environment} from '../../../environments/environment';
 
 @Injectable({

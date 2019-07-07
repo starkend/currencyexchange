@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SymbolsService} from "../shared/service/symbols.service";
+import {SymbolsService} from '../shared/service/symbols.service';
 
 @Component({
   selector: 'app-historical-rates',
@@ -16,9 +16,9 @@ export class HistoricalRatesComponent implements OnInit {
 
   ngOnInit() {
     this.getHistoricalRates();
-    this.displayedColumns = ['idColumn','base','rates'];
-    this.subColumns = ['date','rateElement'];
-    this.subSubColumns = ['symbol','rate'];
+    this.displayedColumns = ['idColumn' , 'base' , 'rates'];
+    this.subColumns = ['date' , 'rateElement'];
+    this.subSubColumns = ['symbol' , 'rate'];
 
   }
 
