@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Symbol} from '../shared/model/symbol.model';
 import {SymbolsService} from '../shared/service/symbols.service';
 import {ConvertCurrency} from '../shared/model/convert-currency.model';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-convert-currency',
@@ -25,7 +24,7 @@ export class ConvertCurrencyComponent implements OnInit {
 
   ngOnInit() {
     this.getSymbolsMap();
-    this.convertPair = new ConvertCurrency('','',0);
+    this.convertPair = new ConvertCurrency('' ,'' ,0);
     this.convertedRate = '';
   }
 
