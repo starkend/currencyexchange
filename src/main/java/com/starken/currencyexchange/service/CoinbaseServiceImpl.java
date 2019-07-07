@@ -34,8 +34,9 @@ public class CoinbaseServiceImpl implements CoinbaseService {
     }
 
     @Override
-    public SymbolRatesDto getLatestSymbolRatesByBase(String usd) {
-        String exchangeRatesUrl = BASE_URL + "/exchange-rates";
+    public SymbolRatesDto getLatestSymbolRatesByBase(String base) {
+        String exchangeRatesUrl = BASE_URL + "/exchange-rates"
+                + "?currency=" + base;
 
         HttpEntity<String> response = getStringResponse(exchangeRatesUrl);
 

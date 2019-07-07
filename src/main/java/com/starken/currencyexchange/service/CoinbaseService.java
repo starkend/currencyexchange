@@ -8,7 +8,7 @@ import com.starken.currencyexchange.dto.SymbolRatesDto;
 public interface CoinbaseService {
     CurrenciesDto getCurrencies();
 
-    SymbolRatesDto getLatestSymbolRatesByBase(String usd);
+    SymbolRatesDto getLatestSymbolRatesByBase(String base);
 
     CoinbasePriceDto getBuyPrice(SymbolDto symbolDto);
 
