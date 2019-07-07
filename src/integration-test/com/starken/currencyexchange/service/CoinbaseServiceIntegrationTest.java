@@ -32,8 +32,8 @@ public class CoinbaseServiceIntegrationTest {
     }
 
     @Test
-    public void whenGetRates_thenReturnPopulatedRates() {
-        SymbolRatesDto symbolRatesDto = coinbaseService.getLatestSymbolRatesByBase("USD");
+    public void whenGetRatesByBase_thenReturnPopulatedRates() {
+        SymbolRatesDto symbolRatesDto = coinbaseService.getLatestSymbolRatesByBase("AUD");
 
         assertNotNull(symbolRatesDto);
         assertNotNull(symbolRatesDto.getRates());
