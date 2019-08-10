@@ -7,6 +7,8 @@ This app has also been successfully deployed to AWS.  It runs on an EC2 instance
 
 The Spring Boot and Angular portions have both been successfully run locally in Docker images.
 
+**Note:** This app currently requires a running instance of Elasticsearch for all Tests to run successfully.
+
 ### Functionality
 - **Spring Boot**
   - MVC Architecture
