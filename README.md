@@ -1,7 +1,7 @@
 # currencyexchange
 Proof of Concept MVC App built with **Spring Boot 2.x, Angular 7, and Postgres 9.x. The app currently runs on Java 12**
 
-The business context of this app is foreign currency exchange.  A currency trading pair, such as USD & AUD, are referred to as a Symbol.  The external APIs consumed in this app are provided by the European Central Bank(ECB) at https://exchangeratesapi.io/.
+The business context of this app is foreign currency exchange.  A currency trading pair, such as USD & AUD, are referred to as a Symbol.  The external APIs consumed in this app are provided by the European Central Bank(ECB) at https://exchangeratesapi.io/ and from Coinbase at https://developers.coinbase.com/api/v2.
 
 This app has also been successfully deployed to AWS.  It runs on an EC2 instance with the Angular content served via NGINX and the Spring Boot portion via an executable jar. PostgreSQL is deployed to an RDS instance.
 
