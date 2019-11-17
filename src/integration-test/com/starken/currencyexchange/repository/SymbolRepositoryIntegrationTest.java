@@ -9,9 +9,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -55,6 +56,29 @@ public class SymbolRepositoryIntegrationTest {
         boolean deleteFailed = symbolRepository.existsById(found.getId());
 
         assertFalse(deleteFailed);
+    }
+
+    @Test
+    public void whenDeleteSymbolPairById_thenSucceed() {
+        // given
+        Symbol symbol = new Symbol();
+        symbol.setSymbolPair("USDAUD");
+        Symbol savedSymbol = entityManager.persist(symbol);
+        entityManager.flush();
+
+        // when
+        Optional<Symbol> found = symbolRepository.findById(savedSymbol.getId());
+
+        if (found.isPresent()) {
+
+            symbolRepository.deleteById(found.get().getId());
+
+            boolean deleteFailed = symbolRepository.existsById(savedSymbol.getId());
+
+            assertFalse(deleteFailed);
+        } else {
+            throw new AssertionError("Test Symbol Save did not succeed.  Never reached deletion test code");
+        }
     }
 
 }
