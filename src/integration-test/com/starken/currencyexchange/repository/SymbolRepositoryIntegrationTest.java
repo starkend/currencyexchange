@@ -28,28 +28,22 @@ public class SymbolRepositoryIntegrationTest {
     @Test
     public void whenFindBySymbolPair_thenReturnSymbol() {
         // given
-        Symbol symbol = new Symbol();
-        symbol.setSymbolPair("USDAUD");
-        entityManager.persist(symbol);
-        entityManager.flush();
+        Symbol savedSymbol = createAndSaveSymbol();
 
         // when
-        Symbol found = symbolRepository.findBySymbolPair(symbol.getSymbolPair());
+        Symbol found = symbolRepository.findBySymbolPair(savedSymbol.getSymbolPair());
 
         // then
-        assertThat(symbol.getSymbolPair()).isEqualTo(found.getSymbolPair());
+        assertThat(savedSymbol.getSymbolPair()).isEqualTo(found.getSymbolPair());
     }
 
     @Test
     public void whenDeleteSymbolPair_thenSucceed() {
         // given
-        Symbol symbol = new Symbol();
-        symbol.setSymbolPair("USDAUD");
-        entityManager.persist(symbol);
-        entityManager.flush();
+        Symbol savedSymbol = createAndSaveSymbol();
 
         // when
-        Symbol found = symbolRepository.findBySymbolPair(symbol.getSymbolPair());
+        Symbol found = symbolRepository.findBySymbolPair(savedSymbol.getSymbolPair());
 
         symbolRepository.delete(found);
 
@@ -61,10 +55,7 @@ public class SymbolRepositoryIntegrationTest {
     @Test
     public void whenDeleteSymbolPairById_thenSucceed() {
         // given
-        Symbol symbol = new Symbol();
-        symbol.setSymbolPair("USDAUD");
-        Symbol savedSymbol = entityManager.persist(symbol);
-        entityManager.flush();
+        Symbol savedSymbol = createAndSaveSymbol();
 
         // when
         Optional<Symbol> found = symbolRepository.findById(savedSymbol.getId());
@@ -79,6 +70,15 @@ public class SymbolRepositoryIntegrationTest {
         } else {
             throw new AssertionError("Test Symbol Save did not succeed.  Never reached deletion test code");
         }
+    }
+
+    private Symbol createAndSaveSymbol() {
+        // given
+        Symbol symbol = new Symbol();
+        symbol.setSymbolPair("USDAUD");
+        Symbol savedSymbol = entityManager.persist(symbol);
+        entityManager.flush();
+        return savedSymbol;
     }
 
 }
