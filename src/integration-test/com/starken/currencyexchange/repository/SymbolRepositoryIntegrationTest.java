@@ -10,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -35,6 +37,24 @@ public class SymbolRepositoryIntegrationTest {
 
         // then
         assertThat(symbol.getSymbolPair()).isEqualTo(found.getSymbolPair());
+    }
+
+    @Test
+    public void whenDeleteSymbolPair_thenSucceed() {
+        // given
+        Symbol symbol = new Symbol();
+        symbol.setSymbolPair("USDAUD");
+        entityManager.persist(symbol);
+        entityManager.flush();
+
+        // when
+        Symbol found = symbolRepository.findBySymbolPair(symbol.getSymbolPair());
+
+        symbolRepository.delete(found);
+
+        boolean deleteFailed = symbolRepository.existsById(found.getId());
+
+        assertFalse(deleteFailed);
     }
 
 }
