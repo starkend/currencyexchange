@@ -77,4 +77,11 @@ public class SymbolServiceImpl implements SymbolService {
 
     @Override
     public List<String> getSymbolsList() { return ecbService.getSymbolsList();   }
+
+    @Override
+    public void deleteSymbolById(Long id) {
+        symbolRepository.deleteById(id);
+    }
+
+
 }

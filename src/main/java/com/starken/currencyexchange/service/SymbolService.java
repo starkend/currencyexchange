@@ -25,4 +25,6 @@ public interface SymbolService {
     RateDto retrieveRate(SymbolDto symbolDto);
 
     SymbolRatesDto getRatesForSymbol(String baseSymbol);
+
+    void deleteSymbolById(Long id);
 }
