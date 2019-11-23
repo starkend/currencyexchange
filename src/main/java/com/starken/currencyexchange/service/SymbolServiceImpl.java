@@ -53,7 +53,7 @@ public class SymbolServiceImpl implements SymbolService {
         List<SymbolDto> savedSymbolDtoList;
 
         savedSymbolDtoList = StreamSupport.stream(symbolIterable.spliterator(), false)
-                .map(s -> new SymbolDto(s.getSymbolPair()))
+                .map(s -> new SymbolDto(s.getSymbolPair(), s.getId()))
                 .collect(Collectors.toList());
 
         return savedSymbolDtoList;

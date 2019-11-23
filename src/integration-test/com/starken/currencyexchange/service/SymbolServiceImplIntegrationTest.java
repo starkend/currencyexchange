@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -69,6 +70,25 @@ public class SymbolServiceImplIntegrationTest {
         symbolsList = symbolService.getSymbolsList();
 
         assertFalse(symbolsList.isEmpty());
+    }
+
+    @Test
+    public void whenGetSavedSymbols_thenSucceed() {
+        List<Symbol> mockSymbolsList = new ArrayList<>();
+        Symbol symbol1 = new Symbol("USDAUD", 1000L);
+        Symbol symbol2 = new Symbol("AUDNZD", 2000L);
+        Symbol symbol3 = new Symbol("TOPCAD", 3000L);
+        mockSymbolsList.add(symbol1);
+        mockSymbolsList.add(symbol2);
+        mockSymbolsList.add(symbol3);
+
+        Iterable<Symbol> symbolDtoIterable = mockSymbolsList;
+
+        Mockito.when(symbolRepository.findAll())
+                .thenReturn(symbolDtoIterable);
+
+        List<SymbolDto> symbolDtos = symbolService.getSavedSymbols();
+        assertFalse(symbolDtos.isEmpty());
     }
 
 }

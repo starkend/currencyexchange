@@ -17,6 +17,8 @@ public class Symbol {
         this.symbolPair = symbolPair;
     }
 
+    public Symbol(String symbolPair, Long id) {this.symbolPair = symbolPair; this.id = id;}
+
     @Column(name="symbol_pair")
     private String symbolPair;
 

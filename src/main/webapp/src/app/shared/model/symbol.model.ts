@@ -2,6 +2,7 @@
 
 export class Symbol {
 
+  id: bigint;
   symbol1: string;
   symbol2: string;
 
