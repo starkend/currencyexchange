@@ -61,11 +61,8 @@ public class SymbolRepositoryIntegrationTest {
         Optional<Symbol> found = symbolRepository.findById(savedSymbol.getId());
 
         if (found.isPresent()) {
-
             symbolRepository.deleteById(found.get().getId());
-
             boolean deleteFailed = symbolRepository.existsById(savedSymbol.getId());
-
             assertFalse(deleteFailed);
         } else {
             throw new AssertionError("Test Symbol Save did not succeed.  Never reached deletion test code");
