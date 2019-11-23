@@ -80,9 +80,9 @@ public class SymbolDto implements Comparable<SymbolDto> {
     @Override
     public String toString() {
         return "SymbolDto{" +
-                "symbol1='" + symbol1 + '\'' +
+                "id=" + id +
+                ", symbol1='" + symbol1 + '\'' +
                 ", symbol2='" + symbol2 + '\'' +
                 '}';
     }
-
 }

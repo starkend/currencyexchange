@@ -45,4 +45,13 @@ public class Symbol {
     public String getSymbol2() { return symbolPair.substring(3);
     }
 
+    @Override
+    public String toString() {
+        return "Symbol{" +
+                "id=" + id +
+                ", symbolPair='" + symbolPair + '\'' +
+                '}';
+    }
+
+
 }
