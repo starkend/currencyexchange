@@ -21,7 +21,7 @@ export class SymbolsListComponent implements OnInit {
     this.getSavedSymbols();
     this.getAllSymbols();
     this.displayedColumns = ['symbol1', 'symbol2', 'addButton'];
-    this.savedSymbolColumns = ['id', 'savedSymbol1', 'savedSymbol2', 'deleteButton'];
+    this.savedSymbolColumns = ['savedSymbol1', 'savedSymbol2', 'deleteButton'];
   }
 
   getAllSymbols() {

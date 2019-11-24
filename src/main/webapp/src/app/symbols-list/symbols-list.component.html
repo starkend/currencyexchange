@@ -11,11 +11,6 @@
 
     <table mat-table width="300px" [dataSource]="savedSymbols" class="mat-elevation-z8">
 
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> Id </th>
-        <td mat-cell *matCellDef="let savedSymbol"> {{savedSymbol.id}} </td>
-      </ng-container>
-
       <ng-container matColumnDef="savedSymbol1">
         <th mat-header-cell *matHeaderCellDef> Symbol 1 </th>
         <td mat-cell *matCellDef="let savedSymbol"> {{savedSymbol.symbol1}} </td>
