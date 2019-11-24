@@ -1,6 +1,8 @@
 package com.starken.currencyexchange.controller;
 
-import com.starken.currencyexchange.dto.*;
+import com.starken.currencyexchange.dto.ConvertCurrencyDto;
+import com.starken.currencyexchange.dto.RateDto;
+import com.starken.currencyexchange.dto.SymbolDto;
 import com.starken.currencyexchange.model.HistoricalRates;
 import com.starken.currencyexchange.service.HistoricalSymbolRatesService;
 import com.starken.currencyexchange.service.SymbolService;
@@ -51,10 +53,7 @@ public class SymbolController {
 
     @GetMapping("/savedSymbols")
     public List<SymbolDto> getSavedSymbols() {
-
         List<SymbolDto> symbolDtos = symbolService.getSavedSymbols();
-
-        System.out.println(symbolDtos);
 
         return symbolDtos;
     }
@@ -70,8 +69,12 @@ public class SymbolController {
     }
 
     @GetMapping("/symbolsMap")
-    public Map<String, List<String>> getSymbolsMap() { return symbolService.getSymbolTradingPairMap(); }
+    public Map<String, List<String>> getSymbolsMap() {
+        return symbolService.getSymbolTradingPairMap();
+    }
 
     @GetMapping("/historicalRates")
-    public List<HistoricalRates> getAllHistoryRates() { return historicalSymbolRatesService.findAll(); }
+    public List<HistoricalRates> getAllHistoryRates() {
+        return historicalSymbolRatesService.findAll();
+    }
 }
