@@ -37,7 +37,7 @@
   <div fxFlex="25%" fxFlexOffset="10%">
     <h2>API Symbols</h2>
 
-    <table [dataSource]="symbols" class="mat-elevation-z8" mat-table width="300px">
+    <table [dataSource]="symbols" class="mat-elevation-z8" mat-table width="250px">
 
       <ng-container matColumnDef="symbol1">
         <th *matHeaderCellDef mat-header-cell> Symbol 1</th>
@@ -52,7 +52,7 @@
       <ng-container matColumnDef="addButton">
         <th *matHeaderCellDef mat-header-cell></th>
         <td *matCellDef="let symbol" mat-cell>
-          <button (click)="addSymbol(symbol)" mat-raised-button>Add Symbol</button>
+          <button (click)="addSymbol(symbol)" mat-raised-button>Add</button>
         </td>
       </ng-container>
 
