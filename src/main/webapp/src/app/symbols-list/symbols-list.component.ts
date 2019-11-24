@@ -21,7 +21,7 @@ export class SymbolsListComponent implements OnInit {
     this.getSavedSymbols();
     this.getAllSymbols();
     this.displayedColumns = ['symbol1', 'symbol2', 'addButton'];
-    this.savedSymbolColumns = ['savedSymbol1', 'savedSymbol2'];
+    this.savedSymbolColumns = ['id', 'savedSymbol1', 'savedSymbol2', 'deleteButton'];
   }
 
   getAllSymbols() {
@@ -38,6 +38,13 @@ export class SymbolsListComponent implements OnInit {
 
   addSymbol(symbol: Symbol) {
     this.symbolsService.addSymbol(symbol)
+      .subscribe(() => {
+        this.getSavedSymbols();
+      });
+  }
+
+  deleteSymbol(savedSymbol: any) {
+    this.symbolsService.deleteSymbol(savedSymbol.id)
       .subscribe(() => {
         this.getSavedSymbols();
       });

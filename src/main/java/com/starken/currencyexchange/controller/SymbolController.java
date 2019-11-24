@@ -44,9 +44,19 @@ public class SymbolController {
         return symbolService.convertCurrency(convertCurrencyDto);
     }
 
+    @PostMapping("/deleteSymbol")
+    public void deleteSymbolById(@RequestBody Long id) {
+        symbolService.deleteSymbolById(id);
+    }
+
     @GetMapping("/savedSymbols")
     public List<SymbolDto> getSavedSymbols() {
-        return symbolService.getSavedSymbols();
+
+        List<SymbolDto> symbolDtos = symbolService.getSavedSymbols();
+
+        System.out.println(symbolDtos);
+
+        return symbolDtos;
     }
 
     @GetMapping("/symbols")
