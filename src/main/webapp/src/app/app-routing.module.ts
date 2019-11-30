@@ -14,7 +14,8 @@ const appRoutes: Routes = [
   { path: 'convert-currency', component: ConvertCurrencyComponent },
   { path: 'rates', component: RatesComponent },
   { path: 'historical-rates', component: HistoricalRatesComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({
