@@ -2,8 +2,6 @@ package com.starken.currencyexchange;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.starken.currencyexchange.service.*;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -79,18 +77,6 @@ public class CurrencyexchangeConfiguration extends AbstractElasticsearchConfigur
     public int getPort() {
         return port;
     }
-
-//    @Bean
-//    public RestHighLevelClient client() {
-//        RestHighLevelClient client = null;
-//        client = new RestHighLevelClient(
-//                RestClient.builder(
-//                        new HttpHost(host, port))
-//        );
-////                    Settings.EMPTY)
-////                    .addTransportAddress(new TransportAddress(InetAddress.getByName(host), port));
-//        return client;
-//    }
 
     @Override
     public RestHighLevelClient elasticsearchClient() {
