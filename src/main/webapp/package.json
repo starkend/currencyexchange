@@ -26,7 +26,7 @@
     "core-js": "^3.6.5",
     "lodash": "^4.17.20",
     "rxjs": "^6.6.3",
-    "tslib": "^1.13.0",
+    "tslib": "^1.14.1",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
@@ -36,7 +36,7 @@
     "@angular/language-service": "^8.2.14",
     "@types/jasmine": "^3.5.14",
     "@types/jasminewd2": "^2.0.8",
-    "@types/node": "^12.12.62",
+    "@types/node": "^12.12.67",
     "codelyzer": "^5.2.2",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
